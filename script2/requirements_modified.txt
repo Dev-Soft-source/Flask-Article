@@ -1,0 +1,23 @@
+openai==1.61.0
+pyunsplash==1.0.0rc2
+google-search-results==2.4.2
+nltk==3.9.1
+# people-also-ask==1.1.0  # Commented out as it might depend on lxml
+# beautifulsoup4==4.12.3  # Commented out as it might use lxml
+Pillow==11.1.0
+requests==2.31.0
+python-dotenv==1.0.1
+httpx==0.27.2
+google-api-python-client==2.118.0
+rich==13.9.4
+tiktoken==0.9.0
+tenacity==8.2.2
+# faiss-cpu==1.10.0  # This might require compilation
+sentence-transformers==4.1.0
+huggingface-hub==0.31.1
+# trafilatura==1.6.4  # Commented out as it likely depends on lxml
+setuptools
+selenium
+termcolor
+webdriver_manager
+g4f
