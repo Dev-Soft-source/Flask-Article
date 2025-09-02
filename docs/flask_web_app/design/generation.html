@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator - Generation</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Article Generator
+                    </a>
+                    <div class="hidden md:flex space-x-4">
+                        <a href="index.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Home</a>
+                        <a href="script_selection.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Script Selection</a>
+                        <a href="config_editor_script1.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Configuration</a>
+                        <a href="input_editor_script1.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Input</a>
+                        <a href="generation.html" class="hover:text-indigo-200 px-3 py-2 rounded-md bg-indigo-700">Generation</a>
+                        <a href="results.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Results</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <span class="bg-indigo-700 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span id="active-script" class="font-bold">Script1</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Home</a>
+                <a href="script_selection.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Script Selection</a>
+                <a href="config_editor_script1.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Configuration</a>
+                <a href="input_editor_script1.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Input</a>
+                <a href="generation.html" class="block px-3 py-2 rounded-md bg-indigo-800">Generation</a>
+                <a href="results.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Results</a>
+                <div class="px-3 py-2">
+                    <span class="bg-indigo-800 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span class="active-script-mobile font-bold">Script1</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Article Generation</h1>
+                    <p class="text-gray-600">Generate articles using <span class="font-semibold text-blue-600">Script 1</span>.</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="start-generation" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-play mr-2"></i> Start
+                    </button>
+                    <button id="pause-generation" class="bg-yellow-600 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center" disabled>
+                        <i class="fas fa-pause mr-2"></i> Pause
+                    </button>
+                    <button id="stop-generation" class="bg-red-600 hover:bg-red-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center" disabled>
+                        <i class="fas fa-stop mr-2"></i> Stop
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generation Summary -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Generation Summary</h2>
+            
+            <div class="grid md:grid-cols-4 gap-4 mb-6">
+                <div class="bg-blue-50 rounded-lg p-4 border border-blue-100">
+                    <h3 class="text-sm font-semibold text-blue-800 mb-1">Total Keywords</h3>
+                    <p class="text-2xl font-bold text-blue-600">3</p>
+                </div>
+                
+                <div class="bg-green-50 rounded-lg p-4 border border-green-100">
+                    <h3 class="text-sm font-semibold text-green-800 mb-1">Completed</h3>
+                    <p class="text-2xl font-bold text-green-600">1</p>
+                </div>
+                
+                <div class="bg-yellow-50 rounded-lg p-4 border border-yellow-100">
+                    <h3 class="text-sm font-semibold text-yellow-800 mb-1">In Progress</h3>
+                    <p class="text-2xl font-bold text-yellow-600">1</p>
+                </div>
+                
+                <div class="bg-gray-50 rounded-lg p-4 border border-gray-200">
+                    <h3 class="text-sm font-semibold text-gray-800 mb-1">Remaining</h3>
+                    <p class="text-2xl font-bold text-gray-600">1</p>
+                </div>
+            </div>
+            
+            <div class="mb-4">
+                <h3 class="text-sm font-semibold text-gray-700 mb-2">Overall Progress</h3>
+                <div class="w-full bg-gray-200 rounded-full h-4">
+                    <div class="bg-indigo-600 h-4 rounded-full" style="width: 33%"></div>
+                </div>
+                <div class="flex justify-between text-xs text-gray-500 mt-1">
+                    <span>33% Complete</span>
+                    <span>Estimated time remaining: 4m 12s</span>
+                </div>
+            </div>
+            
+            <div>
+                <h3 class="text-sm font-semibold text-gray-700 mb-2">Current Article</h3>
+                <div class="flex items-center">
+                    <div class="w-full">
+                        <p class="text-gray-800 font-medium mb-1">how to make pasta</p>
+                        <div class="w-full bg-gray-200 rounded-full h-3">
+                            <div class="bg-green-500 h-3 rounded-full" style="width: 65%"></div>
+                        </div>
+                    </div>
+                    <span class="ml-4 text-sm text-gray-600">65%</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Current Operation -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Current Operation</h2>
+                <span class="px-3 py-1 bg-yellow-100 text-yellow-800 rounded-full text-sm font-medium">
+                    <i class="fas fa-spinner fa-spin mr-1"></i> In Progress
+                </span>
+            </div>
+            
+            <div class="mb-4">
+                <div class="flex justify-between mb-1">
+                    <span class="text-sm font-medium text-gray-700">Generating section content</span>
+                    <span class="text-sm text-gray-500">2 of 3 sections</span>
+                </div>
+                <div class="w-full bg-gray-200 rounded-full h-2.5">
+                    <div class="bg-blue-600 h-2.5 rounded-full" style="width: 65%"></div>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 p-4 rounded-md border border-gray-200">
+                <h3 class="font-semibold text-gray-700 mb-2">Current Article: how to make pasta</h3>
+                <div class="space-y-2">
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Generate title</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Generate outline</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-check-circle text-green-500 mr-2"></i>
+                        <span class="text-gray-700">Generate introduction</span>
+                    </div>
+                    <div class="flex items-center">
+                        <i class="fas fa-spinner fa-spin text-blue-500 mr-2"></i>
+                        <span class="text-gray-700">Generate section content</span>
+                    </div>
+                    <div class="flex items-center text-gray-400">
+                        <i class="far fa-circle mr-2"></i>
+                        <span>Generate conclusion</span>
+                    </div>
+                    <div class="flex items-center text-gray-400">
+                        <i class="far fa-circle mr-2"></i>
+                        <span>Generate summary</span>
+                    </div>
+                    <div class="flex items-center text-gray-400">
+                        <i class="far fa-circle mr-2"></i>
+                        <span>Generate meta description</span>
+                    </div>
+                    <div class="flex items-center text-gray-400">
+                        <i class="far fa-circle mr-2"></i>
+                        <span>Save article</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console Output -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-xl font-bold text-gray-800">Console Output</h2>
+                <div>
+                    <button id="clear-console" class="text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-trash-alt"></i> Clear
+                    </button>
+                    <button id="copy-console" class="ml-4 text-gray-500 hover:text-gray-700">
+                        <i class="fas fa-copy"></i> Copy
+                    </button>
+                </div>
+            </div>
+            
+            <div class="bg-gray-900 text-gray-100 p-4 rounded-md font-mono text-sm h-64 overflow-y-auto">
+                <div class="console-line">[2024-05-05 14:32:01] Starting article generation with Script 1</div>
+                <div class="console-line">[2024-05-05 14:32:01] Found 3 keywords to process</div>
+                <div class="console-line">[2024-05-05 14:32:01] Processing keyword: how to grow tomatoes</div>
+                <div class="console-line">[2024-05-05 14:32:02] Generating title...</div>
+                <div class="console-line">[2024-05-05 14:32:05] Title generated: "How to Grow Tomatoes: A Complete Guide for Beginners"</div>
+                <div class="console-line">[2024-05-05 14:32:05] Generating outline...</div>
+                <div class="console-line">[2024-05-05 14:32:10] Outline generated successfully</div>
+                <div class="console-line">[2024-05-05 14:32:10] Generating introduction...</div>
+                <div class="console-line">[2024-05-05 14:32:15] Introduction generated successfully</div>
+                <div class="console-line">[2024-05-05 14:32:15] Generating section 1: Choosing the Right Tomato Varieties</div>
+                <div class="console-line">[2024-05-05 14:32:25] Section 1 generated successfully</div>
+                <div class="console-line">[2024-05-05 14:32:25] Generating section 2: Planting and Growing Conditions</div>
+                <div class="console-line">[2024-05-05 14:32:35] Section 2 generated successfully</div>
+                <div class="console-line">[2024-05-05 14:32:35] Generating section 3: Caring for Tomato Plants</div>
+                <div class="console-line">[2024-05-05 14:32:45] Section 3 generated successfully</div>
+                <div class="console-line">[2024-05-05 14:32:45] Generating conclusion...</div>
+                <div class="console-line">[2024-05-05 14:32:50] Conclusion generated successfully</div>
+                <div class="console-line">[2024-05-05 14:32:50] Generating summary...</div>
+                <div class="console-line">[2024-05-05 14:32:55] Summary generated successfully</div>
+                <div class="console-line">[2024-05-05 14:32:55] Generating meta description...</div>
+                <div class="console-line">[2024-05-05 14:33:00] Meta description generated successfully</div>
+                <div class="console-line">[2024-05-05 14:33:00] Saving article to file...</div>
+                <div class="console-line">[2024-05-05 14:33:01] Article saved to generated_articles/how-to-grow-tomatoes_20240505_143301.md</div>
+                <div class="console-line">[2024-05-05 14:33:01] ✓ Successfully generated article for: how to grow tomatoes</div>
+                <div class="console-line">[2024-05-05 14:33:01] Processing keyword: how to make pasta</div>
+                <div class="console-line">[2024-05-05 14:33:02] Generating title...</div>
+                <div class="console-line">[2024-05-05 14:33:05] Title generated: "How to Make Pasta from Scratch: A Step-by-Step Guide"</div>
+                <div class="console-line">[2024-05-05 14:33:05] Generating outline...</div>
+                <div class="console-line">[2024-05-05 14:33:10] Outline generated successfully</div>
+                <div class="console-line">[2024-05-05 14:33:10] Generating introduction...</div>
+                <div class="console-line">[2024-05-05 14:33:15] Introduction generated successfully</div>
+                <div class="console-line">[2024-05-05 14:33:15] Generating section 1: Essential Ingredients for Homemade Pasta</div>
+                <div class="console-line">[2024-05-05 14:33:25] Section 1 generated successfully</div>
+                <div class="console-line">[2024-05-05 14:33:25] Generating section 2: Mixing and Kneading the Dough</div>
+                <div class="console-line console-line-active">[2024-05-05 14:33:35] Generating section 2 content...</div>
+            </div>
+        </div>
+
+        <!-- Queue Status -->
+        <div class="bg-white rounded-lg shadow-md p-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Article Queue</h2>
+            
+            <div class="overflow-x-auto">
+                <table class="min-w-full bg-white">
+                    <thead class="bg-gray-100">
+                        <tr>
+                            <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">#</th>
+                            <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Keyword</th>
+                            <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Status</th>
+                            <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Progress</th>
+                            <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200">
+                        <tr>
+                            <td class="py-2 px-4 text-sm text-gray-700">1</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">how to grow tomatoes</td>
+                            <td class="py-2 px-4 text-sm">
+                                <span class="bg-green-100 text-green-800 text-xs font-medium px-2 py-0.5 rounded">Completed</span>
+                            </td>
+                            <td class="py-2 px-4 text-sm text-gray-700">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-green-500 h-2 rounded-full w-full"></div>
+                                </div>
+                            </td>
+                            <td class="py-2 px-4 text-sm text-indigo-600">
+                                <a href="#" class="hover:text-indigo-800">View</a>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 text-sm text-gray-700">2</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">how to make pasta</td>
+                            <td class="py-2 px-4 text-sm">
+                                <span class="bg-yellow-100 text-yellow-800 text-xs font-medium px-2 py-0.5 rounded">In Progress</span>
+                            </td>
+                            <td class="py-2 px-4 text-sm text-gray-700">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-yellow-500 h-2 rounded-full" style="width: 65%"></div>
+                                </div>
+                            </td>
+                            <td class="py-2 px-4 text-sm text-gray-400">
+                                -
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="py-2 px-4 text-sm text-gray-700">3</td>
+                            <td class="py-2 px-4 text-sm text-gray-700">best coffee brewing methods</td>
+                            <td class="py-2 px-4 text-sm">
+                                <span class="bg-gray-100 text-gray-800 text-xs font-medium px-2 py-0.5 rounded">Pending</span>
+                            </td>
+                            <td class="py-2 px-4 text-sm text-gray-700">
+                                <div class="w-full bg-gray-200 rounded-full h-2">
+                                    <div class="bg-gray-500 h-2 rounded-full w-0"></div>
+                                </div>
+                            </td>
+                            <td class="py-2 px-4 text-sm text-gray-400">
+                                -
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Article Generator. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-indigo-300">Documentation</a>
+                    <a href="#" class="hover:text-indigo-300">GitHub</a>
+                    <a href="#" class="hover:text-indigo-300">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Get active script from localStorage or set default
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeScript = localStorage.getItem('activeScript') || 'None';
+            document.getElementById('active-script').textContent = activeScript;
+            
+            // Update all instances of active script display
+            const activeScriptElements = document.querySelectorAll('.active-script-mobile');
+            activeScriptElements.forEach(el => {
+                el.textContent = activeScript;
+            });
+        });
+
+        // Start generation
+        document.getElementById('start-generation').addEventListener('click', function() {
+            this.disabled = true;
+            document.getElementById('pause-generation').disabled = false;
+            document.getElementById('stop-generation').disabled = false;
+            
+            // Simulate generation progress
+            simulateProgress();
+        });
+
+        // Pause generation
+        document.getElementById('pause-generation').addEventListener('click', function() {
+            this.disabled = true;
+            document.getElementById('start-generation').disabled = false;
+            document.getElementById('stop-generation').disabled = false;
+            
+            // Stop simulation
+            clearInterval(window.progressInterval);
+            
+            // Add pause message to console
+            addConsoleMessage('Generation paused by user');
+        });
+
+        // Stop generation
+        document.getElementById('stop-generation').addEventListener('click', function() {
+            if (confirm('Are you sure you want to stop the generation process? This cannot be undone.')) {
+                this.disabled = true;
+                document.getElementById('pause-generation').disabled = true;
+                document.getElementById('start-generation').disabled = false;
+                
+                // Stop simulation
+                clearInterval(window.progressInterval);
+                
+                // Add stop message to console
+                addConsoleMessage('Generation stopped by user');
+            }
+        });
+
+        // Clear console
+        document.getElementById('clear-console').addEventListener('click', function() {
+            const consoleOutput = document.querySelector('.bg-gray-900');
+            consoleOutput.innerHTML = '';
+        });
+
+        // Copy console
+        document.getElementById('copy-console').addEventListener('click', function() {
+            const consoleOutput = document.querySelector('.bg-gray-900');
+            const consoleText = Array.from(consoleOutput.querySelectorAll('.console-line'))
+                .map(line => line.textContent)
+                .join('\n');
+            
+            navigator.clipboard.writeText(consoleText).then(() => {
+                alert('Console output copied to clipboard');
+            });
+        });
+
+        // Simulate progress
+        function simulateProgress() {
+            let progress = 65; // Current progress percentage
+            
+            window.progressInterval = setInterval(() => {
+                progress += 1;
+                
+                if (progress >= 100) {
+                    clearInterval(window.progressInterval);
+                    
+                    // Update UI to show completion
+                    document.querySelector('.bg-yellow-500').style.width = '100%';
+                    document.querySelector('.bg-yellow-100').classList.replace('bg-yellow-100', 'bg-green-100');
+                    document.querySelector('.bg-yellow-100').classList.replace('text-yellow-800', 'text-green-800');
+                    document.querySelector('.bg-yellow-100').innerHTML = '<i class="fas fa-check mr-1"></i> Completed';
+                    document.querySelector('.text-yellow-800').innerHTML = '<i class="fas fa-check mr-1"></i> Completed';
+                    
+                    // Add completion messages to console
+                    addConsoleMessage('Section 2 generated successfully');
+                    addConsoleMessage('Generating section 3: Rolling and Cutting the Pasta');
+                    
+                    // Start next article after a delay
+                    setTimeout(() => {
+                        window.location.href = 'results.html';
+                    }, 2000);
+                    
+                    return;
+                }
+                
+                // Update progress bar
+                document.querySelector('.bg-yellow-500').style.width = `${progress}%`;
+                document.querySelector('.ml-4.text-sm').textContent = `${progress}%`;
+                
+                // Add console messages occasionally
+                if (progress % 10 === 0) {
+                    addConsoleMessage('Generating section 2 content...');
+                }
+            }, 500);
+        }
+
+        // Add message to console
+        function addConsoleMessage(message) {
+            const consoleOutput = document.querySelector('.bg-gray-900');
+            const date = new Date();
+            const timestamp = date.toISOString().replace('T', ' ').substring(0, 19);
+            
+            const line = document.createElement('div');
+            line.className = 'console-line';
+            line.textContent = `[${timestamp}] ${message}`;
+            
+            consoleOutput.appendChild(line);
+            consoleOutput.scrollTop = consoleOutput.scrollHeight;
+            
+            // Remove console-line-active class from all lines
+            document.querySelectorAll('.console-line-active').forEach(el => {
+                el.classList.remove('console-line-active');
+            });
+            
+            // Add active class to the new line
+            line.classList.add('console-line-active');
+        }
+    </script>
+</body>
+</html>

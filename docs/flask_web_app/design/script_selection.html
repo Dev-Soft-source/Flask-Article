@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator - Script Selection</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        // Custom colors can be defined here
+                    }
+                }
+            }
+        }
+    </script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles */
+        .script-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .script-card:hover {
+            transform: translateY(-5px);
+        }
+        .light .script-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+        .dark .script-card:hover {
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5), 0 4px 6px -2px rgba(0, 0, 0, 0.3);
+        }
+        .feature-yes {
+            color: #10B981;
+        }
+        .dark .feature-yes {
+            color: #34D399;
+        }
+        .feature-no {
+            color: #EF4444;
+        }
+        .dark .feature-no {
+            color: #F87171;
+        }
+        .feature-limited {
+            color: #F59E0B;
+        }
+        .dark .feature-limited {
+            color: #FBBF24;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 min-h-screen flex flex-col transition-colors duration-200">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 dark:bg-indigo-800 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Article Generator
+                    </a>
+                    <div class="hidden md:flex space-x-4">
+                        <a href="index.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Home</a>
+                        <a href="script_selection.html" class="hover:text-indigo-200 px-3 py-2 rounded-md bg-indigo-700 dark:bg-indigo-900">Script Selection</a>
+                        <a href="config_editor.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Configuration</a>
+                        <a href="input_editor.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Input</a>
+                        <a href="generation.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Generation</a>
+                        <a href="results.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Results</a>
+                    </div>
+                </div>
+                <div class="flex items-center space-x-4">
+                    <!-- Dark Mode Toggle -->
+                    <button id="theme-toggle" class="text-white focus:outline-none">
+                        <i class="fas fa-moon text-xl dark:hidden"></i>
+                        <i class="fas fa-sun text-xl hidden dark:block"></i>
+                    </button>
+                    <div class="md:hidden">
+                        <button id="mobile-menu-button" class="text-white focus:outline-none">
+                            <i class="fas fa-bars text-xl"></i>
+                        </button>
+                    </div>
+                    <div class="hidden md:block">
+                        <span class="bg-indigo-700 dark:bg-indigo-900 px-3 py-1 rounded-full text-sm">
+                            Active Script: <span id="active-script" class="font-bold">None</span>
+                        </span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-700 dark:bg-indigo-900">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800 dark:hover:bg-indigo-950">Home</a>
+                <a href="script_selection.html" class="block px-3 py-2 rounded-md bg-indigo-800 dark:bg-indigo-950">Script Selection</a>
+                <a href="config_editor.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800 dark:hover:bg-indigo-950">Configuration</a>
+                <a href="input_editor.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800 dark:hover:bg-indigo-950">Input</a>
+                <a href="generation.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800 dark:hover:bg-indigo-950">Generation</a>
+                <a href="results.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800 dark:hover:bg-indigo-950">Results</a>
+                <div class="px-3 py-2">
+                    <span class="bg-indigo-800 dark:bg-indigo-950 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span class="active-script-mobile font-bold">None</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Page Header -->
+        <div class="mb-8">
+            <h1 class="text-3xl font-bold text-gray-800 dark:text-white mb-2">Script Selection</h1>
+            <p class="text-gray-600 dark:text-gray-300">Compare and choose the right script for your article generation needs.</p>
+        </div>
+
+        <!-- Script Cards -->
+        <div class="grid md:grid-cols-2 gap-6 mb-8">
+            <!-- Script 1 Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden script-card transition-colors duration-200">
+                <div class="bg-blue-600 dark:bg-blue-700 text-white p-4">
+                    <h2 class="text-xl font-bold">Script 1</h2>
+                    <p class="text-sm opacity-90">Simple & Straightforward</p>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Script 1 is designed for simplicity and ease of use. It provides a streamlined approach to article generation with minimal configuration required.
+                    </p>
+                    <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Best For:</h3>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Beginners to article generation</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Quick article generation with minimal setup</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Simple keyword-based articles</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Users who prefer simplicity over advanced features</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-center">
+                        <button onclick="setActiveScript('Script1')" class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                            Select Script 1
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Script 2 Card -->
+            <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden script-card transition-colors duration-200">
+                <div class="bg-purple-600 dark:bg-purple-700 text-white p-4">
+                    <h2 class="text-xl font-bold">Script 2</h2>
+                    <p class="text-sm opacity-90">Advanced & Feature-Rich</p>
+                </div>
+                <div class="p-6">
+                    <p class="text-gray-700 dark:text-gray-300 mb-4">
+                        Script 2 offers advanced features and greater customization options for users who need more control over the article generation process.
+                    </p>
+                    <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Best For:</h3>
+                    <ul class="space-y-2 mb-6">
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Advanced users who need more control</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Articles with predefined section headings</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Content requiring RAG capabilities</span>
+                        </li>
+                        <li class="flex items-start">
+                            <i class="fas fa-check text-green-500 dark:text-green-400 mt-1 mr-2"></i>
+                            <span class="dark:text-gray-300">Users who need extensive customization options</span>
+                        </li>
+                    </ul>
+                    <div class="flex justify-center">
+                        <button onclick="setActiveScript('Script2')" class="bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                            Select Script 2
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Feature Comparison Table -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-8 transition-colors duration-200">
+            <div class="bg-gray-800 dark:bg-gray-900 text-white p-4">
+                <h2 class="text-xl font-bold">Feature Comparison</h2>
+            </div>
+            <div class="p-4 overflow-x-auto">
+                <table class="min-w-full">
+                    <thead>
+                        <tr class="bg-gray-100 dark:bg-gray-700">
+                            <th class="py-3 px-4 text-left text-gray-700 dark:text-gray-300 font-semibold">Feature</th>
+                            <th class="py-3 px-4 text-center text-gray-700 dark:text-gray-300 font-semibold">Script 1</th>
+                            <th class="py-3 px-4 text-center text-gray-700 dark:text-gray-300 font-semibold">Script 2</th>
+                            <th class="py-3 px-4 text-left text-gray-700 dark:text-gray-300 font-semibold">Notes</th>
+                        </tr>
+                    </thead>
+                    <tbody class="divide-y divide-gray-200 dark:divide-gray-700">
+                        <!-- Input Format -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Input Format</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Simple CSV</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Complex CSV</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 1 uses simple keyword,image_keyword format. Script 2 supports additional columns for subtitles and section images.
+                            </td>
+                        </tr>
+
+                        <!-- RAG Capabilities -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">RAG Capabilities</td>
+                            <td class="py-3 px-4 text-center">
+                                <i class="fas fa-check feature-limited"></i>
+                                <span class="sr-only">Limited</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <i class="fas fa-check feature-yes"></i>
+                                <span class="sr-only">Yes</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 2 has more advanced RAG capabilities with better context retrieval and integration.
+                            </td>
+                        </tr>
+
+                        <!-- Command Line Interface -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Command Line Interface</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Simple</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Advanced</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 1 takes a simple keywords file as argument. Script 2 uses more complex command-line arguments with flags.
+                            </td>
+                        </tr>
+
+                        <!-- Configuration Options -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Configuration Options</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Basic</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Extensive</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 2 offers more configuration options for fine-tuning the article generation process.
+                            </td>
+                        </tr>
+
+                        <!-- Section Headings -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Custom Section Headings</td>
+                            <td class="py-3 px-4 text-center">
+                                <i class="fas fa-times feature-no"></i>
+                                <span class="sr-only">No</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <i class="fas fa-check feature-yes"></i>
+                                <span class="sr-only">Yes</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 2 allows specifying custom section headings in the CSV input.
+                            </td>
+                        </tr>
+
+                        <!-- Processing Speed -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Processing Speed</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Faster</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Slower</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 1 is generally faster due to simpler processing and fewer features.
+                            </td>
+                        </tr>
+
+                        <!-- Error Handling -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Error Handling</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Basic</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Advanced</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 2 has more robust error handling and recovery mechanisms.
+                            </td>
+                        </tr>
+
+                        <!-- Rate Limiting -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Rate Limiting</td>
+                            <td class="py-3 px-4 text-center">
+                                <i class="fas fa-check feature-limited"></i>
+                                <span class="sr-only">Limited</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <i class="fas fa-check feature-yes"></i>
+                                <span class="sr-only">Yes</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 2 has more advanced rate limiting capabilities for API calls.
+                            </td>
+                        </tr>
+
+                        <!-- Progress Display -->
+                        <tr>
+                            <td class="py-3 px-4 text-gray-700 dark:text-gray-300 font-medium">Progress Display</td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Simple</span>
+                            </td>
+                            <td class="py-3 px-4 text-center">
+                                <span class="text-gray-700 dark:text-gray-300">Detailed</span>
+                            </td>
+                            <td class="py-3 px-4 text-gray-600 dark:text-gray-400 text-sm">
+                                Script 2 provides more detailed progress information during generation.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Script Selection Wizard -->
+        <div class="bg-white dark:bg-gray-800 rounded-lg shadow-md overflow-hidden mb-8 transition-colors duration-200">
+            <div class="bg-indigo-600 dark:bg-indigo-700 text-white p-4">
+                <h2 class="text-xl font-bold">Script Selection Wizard</h2>
+                <p class="text-sm opacity-90">Answer a few questions to find the right script for your needs</p>
+            </div>
+            <div class="p-6">
+                <div class="space-y-6">
+                    <div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">What's your experience level with article generation?</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Beginner</button>
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Intermediate</button>
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Advanced</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Do you need custom section headings?</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Yes</button>
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">No</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">How important is processing speed?</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Very important</button>
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Somewhat important</button>
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Not important</button>
+                        </div>
+                    </div>
+
+                    <div>
+                        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Do you need advanced RAG capabilities?</h3>
+                        <div class="flex flex-wrap gap-2">
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">Yes</button>
+                            <button class="wizard-btn px-4 py-2 border border-gray-300 dark:border-gray-600 rounded-md hover:bg-gray-100 dark:hover:bg-gray-700 dark:text-gray-300 transition-colors duration-200">No</button>
+                        </div>
+                    </div>
+
+                    <div class="pt-4 border-t border-gray-200 dark:border-gray-700">
+                        <h3 class="font-semibold text-gray-800 dark:text-white mb-2">Recommendation:</h3>
+                        <div id="wizard-recommendation" class="p-4 bg-gray-100 dark:bg-gray-700 rounded-md transition-colors duration-200">
+                            <p class="text-gray-600 dark:text-gray-300">Please answer the questions above to get a recommendation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Call to Action -->
+        <div class="text-center">
+            <p class="text-gray-600 dark:text-gray-300 mb-4">Ready to start generating articles?</p>
+            <div class="flex justify-center space-x-4">
+                <button onclick="setActiveScript('Script1')" class="bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                    Select Script 1
+                </button>
+                <button onclick="setActiveScript('Script2')" class="bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-bold py-2 px-6 rounded-lg transition duration-300">
+                    Select Script 2
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 dark:bg-gray-900 text-white py-6 transition-colors duration-200">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Article Generator. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-indigo-300">Documentation</a>
+                    <a href="#" class="hover:text-indigo-300">GitHub</a>
+                    <a href="#" class="hover:text-indigo-300">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Dark mode toggle
+        document.getElementById('theme-toggle').addEventListener('click', function() {
+            if (document.documentElement.classList.contains('dark')) {
+                // Switch to light mode
+                document.documentElement.classList.remove('dark');
+                localStorage.setItem('theme', 'light');
+            } else {
+                // Switch to dark mode
+                document.documentElement.classList.add('dark');
+                localStorage.setItem('theme', 'dark');
+            }
+        });
+
+        // Check for saved theme preference or respect OS preference
+        document.addEventListener('DOMContentLoaded', function() {
+            // Check for saved theme preference
+            const savedTheme = localStorage.getItem('theme');
+
+            if (savedTheme === 'dark') {
+                document.documentElement.classList.add('dark');
+            } else if (savedTheme === 'light') {
+                document.documentElement.classList.remove('dark');
+            } else {
+                // If no saved preference, check OS preference
+                if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+                    document.documentElement.classList.add('dark');
+                }
+            }
+
+            // Get active script from localStorage or set default
+            const activeScript = localStorage.getItem('activeScript') || 'None';
+            document.getElementById('active-script').textContent = activeScript;
+
+            // Update all instances of active script display
+            const activeScriptElements = document.querySelectorAll('.active-script-mobile');
+            activeScriptElements.forEach(el => {
+                el.textContent = activeScript;
+            });
+        });
+
+        // Function to set active script
+        function setActiveScript(scriptId) {
+            localStorage.setItem('activeScript', scriptId);
+            document.getElementById('active-script').textContent = scriptId;
+
+            // Update all instances of active script display
+            const activeScriptElements = document.querySelectorAll('.active-script-mobile');
+            activeScriptElements.forEach(el => {
+                el.textContent = scriptId;
+            });
+
+            // Redirect to appropriate page based on script selection
+            if (scriptId === 'Script1') {
+                window.location.href = 'config_editor_script1.html';
+            } else if (scriptId === 'Script2') {
+                window.location.href = 'config_editor_script2.html';
+            }
+        }
+
+        // Script Selection Wizard
+        const wizardButtons = document.querySelectorAll('.wizard-btn');
+        wizardButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Find all buttons in the same group
+                const siblings = this.parentElement.querySelectorAll('.wizard-btn');
+
+                // Remove active class from all buttons in the group
+                siblings.forEach(sibling => {
+                    sibling.classList.remove('bg-indigo-100', 'dark:bg-indigo-900', 'border-indigo-500', 'dark:border-indigo-500', 'text-indigo-700', 'dark:text-indigo-300');
+                    sibling.classList.add('border-gray-300', 'dark:border-gray-600');
+                });
+
+                // Add active class to the clicked button
+                this.classList.remove('border-gray-300', 'dark:border-gray-600');
+                this.classList.add('bg-indigo-100', 'dark:bg-indigo-900', 'border-indigo-500', 'dark:border-indigo-500', 'text-indigo-700', 'dark:text-indigo-300');
+
+                // Check if all questions have been answered
+                updateWizardRecommendation();
+            });
+        });
+
+        function updateWizardRecommendation() {
+            // Get all question groups
+            const questionGroups = document.querySelectorAll('.wizard-btn').length;
+
+            // Get all selected buttons
+            const selectedButtons = document.querySelectorAll('.wizard-btn.bg-indigo-100, .wizard-btn.dark\\:bg-indigo-900').length;
+
+            // If all questions have been answered, show recommendation
+            if (selectedButtons >= 4) {
+                // This is a simplified logic - in a real app, you'd analyze the actual answers
+                const experienceLevel = document.querySelector('.wizard-btn.bg-indigo-100, .wizard-btn.dark\\:bg-indigo-900').textContent;
+                const recommendationElement = document.getElementById('wizard-recommendation');
+
+                if (experienceLevel === 'Beginner') {
+                    recommendationElement.innerHTML = `
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-blue-500 dark:text-blue-400 text-xl mr-2"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 dark:text-white">Script 1 Recommended</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Based on your answers, we recommend using Script 1 for its simplicity and ease of use.</p>
+                                <button onclick="setActiveScript('Script1')" class="mt-2 bg-blue-600 hover:bg-blue-700 dark:bg-blue-700 dark:hover:bg-blue-800 text-white font-bold py-1 px-4 rounded-lg transition duration-300">
+                                    Select Script 1
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                } else {
+                    recommendationElement.innerHTML = `
+                        <div class="flex items-start">
+                            <div class="flex-shrink-0">
+                                <i class="fas fa-check-circle text-purple-500 dark:text-purple-400 text-xl mr-2"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-gray-800 dark:text-white">Script 2 Recommended</h4>
+                                <p class="text-gray-600 dark:text-gray-300">Based on your answers, we recommend using Script 2 for its advanced features and customization options.</p>
+                                <button onclick="setActiveScript('Script2')" class="mt-2 bg-purple-600 hover:bg-purple-700 dark:bg-purple-700 dark:hover:bg-purple-800 text-white font-bold py-1 px-4 rounded-lg transition duration-300">
+                                    Select Script 2
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                }
+            }
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator - Results</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Article Generator
+                    </a>
+                    <div class="hidden md:flex space-x-4">
+                        <a href="index.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Home</a>
+                        <a href="script_selection.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Script Selection</a>
+                        <a href="config_editor_script1.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Configuration</a>
+                        <a href="input_editor_script1.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Input</a>
+                        <a href="generation.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Generation</a>
+                        <a href="results.html" class="hover:text-indigo-200 px-3 py-2 rounded-md bg-indigo-700">Results</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <span class="bg-indigo-700 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span id="active-script" class="font-bold">Script1</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Home</a>
+                <a href="script_selection.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Script Selection</a>
+                <a href="config_editor_script1.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Configuration</a>
+                <a href="input_editor_script1.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Input</a>
+                <a href="generation.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Generation</a>
+                <a href="results.html" class="block px-3 py-2 rounded-md bg-indigo-800">Results</a>
+                <div class="px-3 py-2">
+                    <span class="bg-indigo-800 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span class="active-script-mobile font-bold">Script1</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Generation Results</h1>
+                    <p class="text-gray-600">View and manage your generated articles.</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="download-all" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download All
+                    </button>
+                    <button id="new-generation" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-plus mr-2"></i> New Generation
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Generation Summary -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <h2 class="text-xl font-bold text-gray-800 mb-4">Generation Summary</h2>
+            
+            <div class="grid md:grid-cols-4 gap-4">
+                <div class="bg-blue-50 rounded-lg p-4 border border-blue-100">
+                    <h3 class="text-sm font-semibold text-blue-800 mb-1">Total Articles</h3>
+                    <p class="text-2xl font-bold text-blue-600">3</p>
+                </div>
+                
+                <div class="bg-green-50 rounded-lg p-4 border border-green-100">
+                    <h3 class="text-sm font-semibold text-green-800 mb-1">Successful</h3>
+                    <p class="text-2xl font-bold text-green-600">3</p>
+                </div>
+                
+                <div class="bg-red-50 rounded-lg p-4 border border-red-100">
+                    <h3 class="text-sm font-semibold text-red-800 mb-1">Failed</h3>
+                    <p class="text-2xl font-bold text-red-600">0</p>
+                </div>
+                
+                <div class="bg-purple-50 rounded-lg p-4 border border-purple-100">
+                    <h3 class="text-sm font-semibold text-purple-800 mb-1">Total Words</h3>
+                    <p class="text-2xl font-bold text-purple-600">4,523</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Filter and Search -->
+        <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+            <div class="flex flex-col md:flex-row md:items-center md:justify-between space-y-4 md:space-y-0">
+                <div class="flex flex-col md:flex-row md:items-center space-y-4 md:space-y-0 md:space-x-4">
+                    <div>
+                        <label for="script-filter" class="block text-sm font-medium text-gray-700 mb-1">Script</label>
+                        <select id="script-filter" class="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="all">All Scripts</option>
+                            <option value="script1" selected>Script 1</option>
+                            <option value="script2">Script 2</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="status-filter" class="block text-sm font-medium text-gray-700 mb-1">Status</label>
+                        <select id="status-filter" class="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="all">All Statuses</option>
+                            <option value="success">Success</option>
+                            <option value="failed">Failed</option>
+                        </select>
+                    </div>
+                    
+                    <div>
+                        <label for="date-filter" class="block text-sm font-medium text-gray-700 mb-1">Date</label>
+                        <select id="date-filter" class="w-full md:w-auto px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                            <option value="all">All Dates</option>
+                            <option value="today" selected>Today</option>
+                            <option value="yesterday">Yesterday</option>
+                            <option value="last-week">Last 7 Days</option>
+                            <option value="last-month">Last 30 Days</option>
+                        </select>
+                    </div>
+                </div>
+                
+                <div class="w-full md:w-64">
+                    <label for="search" class="block text-sm font-medium text-gray-700 mb-1">Search</label>
+                    <div class="relative">
+                        <input type="text" id="search" class="w-full px-4 py-2 pl-10 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500" placeholder="Search keywords...">
+                        <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                            <i class="fas fa-search text-gray-400"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Table -->
+        <div class="bg-white rounded-lg shadow-md overflow-hidden mb-6">
+            <div class="overflow-x-auto">
+                <table class="min-w-full divide-y divide-gray-200">
+                    <thead class="bg-gray-50">
+                        <tr>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Keyword
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Script
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Date
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Status
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Words
+                            </th>
+                            <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                                Actions
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="bg-white divide-y divide-gray-200">
+                        <!-- Article 1 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">how to grow tomatoes</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Script 1</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">2024-05-05</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Success
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                1,542
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button class="text-indigo-600 hover:text-indigo-900 mr-3 view-article" data-article="1">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-blue-600 hover:text-blue-900 mr-3 download-article" data-article="1">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-red-600 hover:text-red-900 delete-article" data-article="1">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        
+                        <!-- Article 2 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">how to make pasta</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Script 1</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">2024-05-05</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Success
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                1,687
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button class="text-indigo-600 hover:text-indigo-900 mr-3 view-article" data-article="2">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-blue-600 hover:text-blue-900 mr-3 download-article" data-article="2">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-red-600 hover:text-red-900 delete-article" data-article="2">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        
+                        <!-- Article 3 -->
+                        <tr>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm font-medium text-gray-900">best coffee brewing methods</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">Script 1</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <div class="text-sm text-gray-500">2024-05-05</div>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap">
+                                <span class="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                    Success
+                                </span>
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm text-gray-500">
+                                1,294
+                            </td>
+                            <td class="px-6 py-4 whitespace-nowrap text-sm font-medium">
+                                <button class="text-indigo-600 hover:text-indigo-900 mr-3 view-article" data-article="3">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                                <button class="text-blue-600 hover:text-blue-900 mr-3 download-article" data-article="3">
+                                    <i class="fas fa-download"></i>
+                                </button>
+                                <button class="text-red-600 hover:text-red-900 delete-article" data-article="3">
+                                    <i class="fas fa-trash-alt"></i>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- Article Preview Modal -->
+        <div id="article-preview-modal" class="fixed inset-0 bg-gray-500 bg-opacity-75 flex items-center justify-center z-50 hidden">
+            <div class="bg-white rounded-lg shadow-xl max-w-4xl w-full max-h-screen overflow-hidden">
+                <div class="flex justify-between items-center p-6 border-b border-gray-200">
+                    <h3 class="text-lg font-bold text-gray-900" id="modal-title">Article Preview</h3>
+                    <button id="close-modal" class="text-gray-400 hover:text-gray-500">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <div class="p-6 overflow-y-auto" style="max-height: 70vh;">
+                    <div id="article-content" class="prose max-w-none">
+                        <h1>How to Grow Tomatoes: A Complete Guide for Beginners</h1>
+                        
+                        <p>Growing tomatoes is a rewarding experience that can provide you with fresh, flavorful produce right from your own garden. Whether you have a spacious backyard or just a few containers on a sunny balcony, tomatoes are versatile plants that can thrive in various conditions with proper care. This comprehensive guide will walk you through everything you need to know to successfully grow tomatoes, from selecting the right varieties to harvesting your bounty.</p>
+                        
+                        <h2>Choosing the Right Tomato Varieties</h2>
+                        
+                        <p>Before you begin planting, it's important to select tomato varieties that will work well in your growing environment. Tomatoes come in hundreds of varieties, each with unique characteristics:</p>
+                        
+                        <ul>
+                            <li><strong>Determinate vs. Indeterminate:</strong> Determinate tomatoes grow to a predetermined height and produce all their fruit within a short period. Indeterminate varieties continue growing and producing fruit throughout the season until frost kills the plants.</li>
+                            <li><strong>Days to Maturity:</strong> Different varieties take anywhere from 50 to 90 days to produce ripe fruit. Choose varieties appropriate for your growing season length.</li>
+                            <li><strong>Disease Resistance:</strong> Look for varieties with resistance to common tomato diseases, especially if they've been problematic in your area.</li>
+                        </ul>
+                        
+                        <p>Popular varieties for beginners include 'Roma', 'Early Girl', 'Cherry', 'Beefsteak', and 'San Marzano'. Consider your culinary preferences as well—cherry tomatoes are great for salads, while paste tomatoes are ideal for sauces.</p>
+                        
+                        <h2>Planting and Growing Conditions</h2>
+                        
+                        <p>Tomatoes thrive in specific conditions that promote healthy growth and abundant fruit production:</p>
+                        
+                        <h3>Timing</h3>
+                        <p>Plant tomatoes after all danger of frost has passed and soil temperatures reach at least 60°F (16°C). In most regions, this is 2-3 weeks after the last spring frost date.</p>
+                        
+                        <h3>Sunlight</h3>
+                        <p>Tomatoes need at least 6-8 hours of direct sunlight daily. Choose a sunny location for optimal growth.</p>
+                        
+                        <h3>Soil Requirements</h3>
+                        <p>Tomatoes prefer well-draining, slightly acidic soil (pH 6.0-6.8) rich in organic matter. Before planting, amend your soil with compost or well-rotted manure to improve fertility and structure.</p>
+                        
+                        <h3>Planting Depth</h3>
+                        <p>Unlike many plants, tomatoes benefit from deep planting. Bury seedlings up to their first set of true leaves, as roots will develop along the buried stem, creating a stronger root system.</p>
+                        
+                        <h3>Spacing</h3>
+                        <p>Space determinate tomatoes 2-3 feet apart and indeterminate varieties 3-4 feet apart, with rows spaced 4-5 feet apart to ensure adequate airflow and light penetration.</p>
+                        
+                        <h2>Caring for Tomato Plants</h2>
+                        
+                        <p>Proper care throughout the growing season is essential for healthy plants and a bountiful harvest:</p>
+                        
+                        <h3>Watering</h3>
+                        <p>Tomatoes need consistent moisture, about 1-2 inches of water per week. Water deeply at the base of plants to keep foliage dry and reduce disease risk. Mulching helps retain soil moisture and suppress weeds.</p>
+                        
+                        <h3>Support</h3>
+                        <p>Most tomato varieties, especially indeterminate types, require support. Options include cages, stakes, or trellises. Install supports at planting time to avoid damaging roots later.</p>
+                        
+                        <h3>Fertilizing</h3>
+                        <p>Apply a balanced fertilizer (10-10-10) at planting time. Once fruit begins to set, switch to a fertilizer higher in phosphorus and potassium but lower in nitrogen (5-10-10) to encourage fruit production rather than excessive leaf growth.</p>
+                        
+                        <h3>Pruning</h3>
+                        <p>Remove suckers (shoots that develop in the crotch between the main stem and branches) on indeterminate varieties to improve air circulation and direct energy to fruit production. Determinate varieties require minimal pruning.</p>
+                        
+                        <h3>Pest and Disease Management</h3>
+                        <p>Monitor plants regularly for common pests like hornworms, aphids, and whiteflies. Practice crop rotation and maintain good garden hygiene to prevent diseases such as early blight, late blight, and verticillium wilt.</p>
+                        
+                        <h2>Conclusion</h2>
+                        
+                        <p>Growing tomatoes successfully requires attention to detail and consistent care, but the reward of harvesting your own fresh, flavorful tomatoes makes the effort worthwhile. By selecting appropriate varieties, providing optimal growing conditions, and maintaining proper care throughout the season, even beginners can enjoy a productive tomato harvest. Remember that gardening is a learning process—take notes on what works well in your specific environment, and use that knowledge to improve your tomato-growing skills each season.</p>
+                        
+                        <h2>Summary</h2>
+                        
+                        <p>Growing tomatoes successfully involves selecting suitable varieties based on your climate and preferences, planting in well-draining, nutrient-rich soil with full sun exposure, and providing consistent care including proper watering, support structures, and fertilization. Attention to pest and disease management through regular monitoring and preventive practices helps ensure healthy plants. Whether you're growing determinate varieties that produce all at once or indeterminate types that yield throughout the season, proper timing of planting and harvesting maximizes your results. With these fundamentals in place, even beginners can enjoy the satisfaction of harvesting homegrown tomatoes with superior flavor and freshness compared to store-bought alternatives.</p>
+                    </div>
+                </div>
+                <div class="px-6 py-4 border-t border-gray-200 flex justify-end">
+                    <button id="download-preview" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-download mr-2"></i> Download
+                    </button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Article Generator. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-indigo-300">Documentation</a>
+                    <a href="#" class="hover:text-indigo-300">GitHub</a>
+                    <a href="#" class="hover:text-indigo-300">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Get active script from localStorage or set default
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeScript = localStorage.getItem('activeScript') || 'None';
+            document.getElementById('active-script').textContent = activeScript;
+            
+            // Update all instances of active script display
+            const activeScriptElements = document.querySelectorAll('.active-script-mobile');
+            activeScriptElements.forEach(el => {
+                el.textContent = activeScript;
+            });
+        });
+
+        // View article
+        const viewButtons = document.querySelectorAll('.view-article');
+        viewButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const articleId = this.getAttribute('data-article');
+                document.getElementById('modal-title').textContent = `Article Preview: ${getArticleTitle(articleId)}`;
+                document.getElementById('article-preview-modal').classList.remove('hidden');
+            });
+        });
+
+        // Close modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('article-preview-modal').classList.add('hidden');
+        });
+
+        // Download article
+        const downloadButtons = document.querySelectorAll('.download-article');
+        downloadButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const articleId = this.getAttribute('data-article');
+                alert(`Downloading article: ${getArticleTitle(articleId)}`);
+            });
+        });
+
+        // Download preview
+        document.getElementById('download-preview').addEventListener('click', function() {
+            alert('Downloading article...');
+        });
+
+        // Delete article
+        const deleteButtons = document.querySelectorAll('.delete-article');
+        deleteButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const articleId = this.getAttribute('data-article');
+                if (confirm(`Are you sure you want to delete the article: ${getArticleTitle(articleId)}?`)) {
+                    alert(`Article deleted: ${getArticleTitle(articleId)}`);
+                    // In a real app, you would remove the row from the table
+                }
+            });
+        });
+
+        // Download all
+        document.getElementById('download-all').addEventListener('click', function() {
+            alert('Downloading all articles as a ZIP file...');
+        });
+
+        // New generation
+        document.getElementById('new-generation').addEventListener('click', function() {
+            window.location.href = 'input_editor_script1.html';
+        });
+
+        // Helper function to get article title
+        function getArticleTitle(articleId) {
+            const titles = {
+                '1': 'how to grow tomatoes',
+                '2': 'how to make pasta',
+                '3': 'best coffee brewing methods'
+            };
+            return titles[articleId] || 'Unknown Article';
+        }
+
+        // Click outside modal to close
+        document.getElementById('article-preview-modal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                this.classList.add('hidden');
+            }
+        });
+    </script>
+</body>
+</html>

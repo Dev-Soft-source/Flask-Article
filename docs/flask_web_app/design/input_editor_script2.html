@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator - Script 2 Input Editor</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Article Generator
+                    </a>
+                    <div class="hidden md:flex space-x-4">
+                        <a href="index.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Home</a>
+                        <a href="script_selection.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Script Selection</a>
+                        <a href="config_editor_script2.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Configuration</a>
+                        <a href="input_editor_script2.html" class="hover:text-indigo-200 px-3 py-2 rounded-md bg-indigo-700">Input</a>
+                        <a href="generation.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Generation</a>
+                        <a href="results.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Results</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <span class="bg-indigo-700 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span id="active-script" class="font-bold">Script2</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Home</a>
+                <a href="script_selection.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Script Selection</a>
+                <a href="config_editor_script2.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Configuration</a>
+                <a href="input_editor_script2.html" class="block px-3 py-2 rounded-md bg-indigo-800">Input</a>
+                <a href="generation.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Generation</a>
+                <a href="results.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Results</a>
+                <div class="px-3 py-2">
+                    <span class="bg-indigo-800 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span class="active-script-mobile font-bold">Script2</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Script 2 Input Editor</h1>
+                    <p class="text-gray-600">Enter keywords and section headings for article generation using Script 2.</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="save-input" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-save mr-2"></i> Save
+                    </button>
+                    <button id="load-input" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-folder-open mr-2"></i> Load
+                    </button>
+                    <button id="clear-input" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-trash mr-2"></i> Clear
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Format Info -->
+        <div class="bg-purple-50 border-l-4 border-purple-500 p-4 mb-6">
+            <div class="flex">
+                <div class="flex-shrink-0">
+                    <i class="fas fa-info-circle text-purple-500"></i>
+                </div>
+                <div class="ml-3">
+                    <h3 class="text-sm font-medium text-purple-800">Script 2 Input Format</h3>
+                    <div class="mt-2 text-sm text-purple-700">
+                        <p>Script 2 uses an advanced CSV format with multiple columns:</p>
+                        <ul class="list-disc pl-5 mt-1">
+                            <li><strong>keyword</strong>: The main keyword for the article (required)</li>
+                            <li><strong>featured_img</strong>: The keyword for the featured image (optional)</li>
+                            <li><strong>subtitle1, subtitle2, etc.</strong>: Custom section headings (optional)</li>
+                            <li><strong>img1, img2, etc.</strong>: Keywords for section images (optional)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Input Methods Tabs -->
+        <div class="mb-6">
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button type="button" class="input-tab whitespace-nowrap py-4 px-1 border-b-2 border-purple-500 font-medium text-sm text-purple-600" data-tab="manual-input">
+                        Manual Input
+                    </button>
+                    <button type="button" class="input-tab whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="csv-upload">
+                        CSV Upload
+                    </button>
+                    <button type="button" class="input-tab whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="csv-preview">
+                        CSV Preview
+                    </button>
+                </nav>
+            </div>
+        </div>
+
+        <!-- Manual Input Tab -->
+        <div id="manual-input" class="input-tab-content">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Manual Keyword Entry</h2>
+                
+                <div class="mb-4">
+                    <button id="add-keyword" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-plus mr-2"></i> Add Keyword
+                    </button>
+                </div>
+                
+                <div id="keywords-container" class="space-y-6">
+                    <!-- Keyword Entry 1 -->
+                    <div class="keyword-entry bg-gray-50 p-4 rounded-md border border-gray-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-semibold text-gray-700">Keyword Entry #1</h3>
+                            <button class="remove-keyword text-red-500 hover:text-red-700">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Main Keyword and Featured Image -->
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Main Keyword</label>
+                                <input type="text" class="main-keyword w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., how to grow tomatoes">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Featured Image Keyword</label>
+                                <input type="text" class="featured-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., tomato plant">
+                            </div>
+                        </div>
+                        
+                        <!-- Section Headings -->
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-2">Section Headings</h4>
+                            <div class="space-y-3">
+                                <!-- Section 1 -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 1 Heading</label>
+                                        <input type="text" class="subtitle w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., Soil Preparation">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 1 Image Keyword</label>
+                                        <input type="text" class="section-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., garden soil">
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 2 -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 2 Heading</label>
+                                        <input type="text" class="subtitle w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., Watering Tips">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 2 Image Keyword</label>
+                                        <input type="text" class="section-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., watering can">
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 3 -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 3 Heading</label>
+                                        <input type="text" class="subtitle w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., Pest Control">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 3 Image Keyword</label>
+                                        <input type="text" class="section-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., garden pests">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="add-section mt-2 text-purple-600 hover:text-purple-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-plus mr-1"></i> Add Section
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Keyword Entry 2 -->
+                    <div class="keyword-entry bg-gray-50 p-4 rounded-md border border-gray-200">
+                        <div class="flex justify-between items-center mb-2">
+                            <h3 class="font-semibold text-gray-700">Keyword Entry #2</h3>
+                            <button class="remove-keyword text-red-500 hover:text-red-700">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
+                        
+                        <!-- Main Keyword and Featured Image -->
+                        <div class="grid md:grid-cols-2 gap-4 mb-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Main Keyword</label>
+                                <input type="text" class="main-keyword w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., best coffee brewing methods">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700 mb-1">Featured Image Keyword</label>
+                                <input type="text" class="featured-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., coffee brewing">
+                            </div>
+                        </div>
+                        
+                        <!-- Section Headings -->
+                        <div class="mb-4">
+                            <h4 class="text-sm font-medium text-gray-700 mb-2">Section Headings</h4>
+                            <div class="space-y-3">
+                                <!-- Section 1 -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 1 Heading</label>
+                                        <input type="text" class="subtitle w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., French Press Method">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 1 Image Keyword</label>
+                                        <input type="text" class="section-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., french press coffee">
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 2 -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 2 Heading</label>
+                                        <input type="text" class="subtitle w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., Pour Over Method">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 2 Image Keyword</label>
+                                        <input type="text" class="section-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., pour over coffee">
+                                    </div>
+                                </div>
+                                
+                                <!-- Section 3 -->
+                                <div class="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 3 Heading</label>
+                                        <input type="text" class="subtitle w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., Espresso Method">
+                                    </div>
+                                    <div>
+                                        <label class="block text-xs text-gray-500 mb-1">Section 3 Image Keyword</label>
+                                        <input type="text" class="section-img w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-purple-500 focus:border-purple-500" placeholder="e.g., espresso machine">
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <button class="add-section mt-2 text-purple-600 hover:text-purple-800 text-sm font-medium flex items-center">
+                                <i class="fas fa-plus mr-1"></i> Add Section
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="flex justify-end">
+                <button id="generate-csv" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                    <i class="fas fa-file-csv mr-2"></i> Generate CSV
+                </button>
+            </div>
+        </div>
+
+        <!-- CSV Upload Tab -->
+        <div id="csv-upload" class="input-tab-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">Upload CSV File</h2>
+                
+                <div class="mb-6">
+                    <label class="block text-sm font-medium text-gray-700 mb-2">CSV File</label>
+                    <div class="flex items-center justify-center w-full">
+                        <label class="flex flex-col rounded-lg border-4 border-dashed w-full h-60 p-10 group text-center">
+                            <div class="h-full w-full text-center flex flex-col items-center justify-center">
+                                <div class="flex flex-auto max-h-48 w-2/5 mx-auto -mt-10">
+                                    <i class="fas fa-file-csv text-purple-500 text-5xl"></i>
+                                </div>
+                                <p class="pointer-none text-gray-500">
+                                    <span class="text-sm">Drag and drop</span> files here <br /> or
+                                    <span class="text-purple-600 hover:underline">select a file</span> from your computer
+                                </p>
+                            </div>
+                            <input type="file" class="hidden" accept=".csv">
+                        </label>
+                    </div>
+                </div>
+                
+                <div class="bg-gray-50 p-4 rounded-md border border-gray-200">
+                    <h3 class="font-semibold text-gray-700 mb-2">CSV Format Example</h3>
+                    <pre class="bg-gray-100 p-3 rounded text-sm overflow-x-auto">
+keyword,featured_img,subtitle1,img1,subtitle2,img2,subtitle3,img3
+how to grow tomatoes,tomato plant,Soil Preparation,garden soil,Watering Tips,watering can,Pest Control,garden pests
+best coffee brewing methods,coffee brewing,French Press Method,french press coffee,Pour Over Method,pour over coffee,Espresso Method,espresso machine
+                    </pre>
+                </div>
+            </div>
+            
+            <div class="flex justify-end">
+                <button id="upload-csv" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                    <i class="fas fa-upload mr-2"></i> Upload CSV
+                </button>
+            </div>
+        </div>
+
+        <!-- CSV Preview Tab -->
+        <div id="csv-preview" class="input-tab-content hidden">
+            <div class="bg-white rounded-lg shadow-md p-6 mb-6">
+                <h2 class="text-xl font-bold text-gray-800 mb-4">CSV Preview</h2>
+                
+                <div class="overflow-x-auto">
+                    <table class="min-w-full bg-white">
+                        <thead class="bg-gray-100">
+                            <tr>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">#</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Keyword</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Featured Image</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Subtitle 1</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Image 1</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Subtitle 2</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Image 2</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Subtitle 3</th>
+                                <th class="py-2 px-4 text-left text-sm font-semibold text-gray-700">Image 3</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-gray-200">
+                            <tr>
+                                <td class="py-2 px-4 text-sm text-gray-700">1</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">how to grow tomatoes</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">tomato plant</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">Soil Preparation</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">garden soil</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">Watering Tips</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">watering can</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">Pest Control</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">garden pests</td>
+                            </tr>
+                            <tr>
+                                <td class="py-2 px-4 text-sm text-gray-700">2</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">best coffee brewing methods</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">coffee brewing</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">French Press Method</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">french press coffee</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">Pour Over Method</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">pour over coffee</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">Espresso Method</td>
+                                <td class="py-2 px-4 text-sm text-gray-700">espresso machine</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="flex justify-end space-x-4">
+                <button id="download-csv" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                    <i class="fas fa-download mr-2"></i> Download CSV
+                </button>
+                <button id="proceed-to-generation" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-6 rounded-lg transition duration-300 flex items-center">
+                    <i class="fas fa-play mr-2"></i> Proceed to Generation
+                </button>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Article Generator. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-indigo-300">Documentation</a>
+                    <a href="#" class="hover:text-indigo-300">GitHub</a>
+                    <a href="#" class="hover:text-indigo-300">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Tab switching
+        const tabButtons = document.querySelectorAll('.input-tab');
+        const tabContents = document.querySelectorAll('.input-tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('border-purple-500', 'text-purple-600');
+                    btn.classList.add('border-transparent', 'text-gray-500');
+                });
+
+                // Add active class to clicked button
+                button.classList.remove('border-transparent', 'text-gray-500');
+                button.classList.add('border-purple-500', 'text-purple-600');
+
+                // Hide all tab contents
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+
+                // Show the selected tab content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+
+        // Add keyword entry
+        document.getElementById('add-keyword').addEventListener('click', function() {
+            // Implementation would be similar to Script 1 but with more fields
+            alert('Add keyword functionality would be implemented here');
+        });
+
+        // Add section
+        document.querySelectorAll('.add-section').forEach(button => {
+            button.addEventListener('click', function() {
+                // Implementation would add a new section row
+                alert('Add section functionality would be implemented here');
+            });
+        });
+
+        // Remove keyword entry
+        document.querySelectorAll('.remove-keyword').forEach(button => {
+            button.addEventListener('click', function() {
+                // Implementation would remove the keyword entry
+                alert('Remove keyword functionality would be implemented here');
+            });
+        });
+
+        // Generate CSV
+        document.getElementById('generate-csv').addEventListener('click', function() {
+            // Switch to CSV preview tab
+            document.querySelector('.input-tab[data-tab="csv-preview"]').click();
+        });
+
+        // Upload CSV
+        document.getElementById('upload-csv').addEventListener('click', function() {
+            // Switch to CSV preview tab
+            document.querySelector('.input-tab[data-tab="csv-preview"]').click();
+        });
+
+        // Proceed to generation
+        document.getElementById('proceed-to-generation').addEventListener('click', function() {
+            window.location.href = 'generation.html';
+        });
+
+        // Save input
+        document.getElementById('save-input').addEventListener('click', function() {
+            alert('Input saved successfully!');
+        });
+
+        // Load input
+        document.getElementById('load-input').addEventListener('click', function() {
+            alert('Input loaded successfully!');
+        });
+
+        // Clear input
+        document.getElementById('clear-input').addEventListener('click', function() {
+            if (confirm('Are you sure you want to clear all input data?')) {
+                alert('Input cleared.');
+            }
+        });
+
+        // Set active script
+        document.addEventListener('DOMContentLoaded', function() {
+            localStorage.setItem('activeScript', 'Script2');
+            
+            // Update all instances of active script display
+            const activeScriptElements = document.querySelectorAll('.active-script-mobile');
+            activeScriptElements.forEach(el => {
+                el.textContent = 'Script2';
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,360 @@
+
+1
+Copyscript AI Plan and 
+Milestones
+Milestone 1: Fix Basic Issues And Enhancing 
+Content Production Quality
+1. Fix Output Discrepancies
+Investigate why script output differs from OpenAI Playground. Enable detailed 
+logging, compare outputs, and refine processing logic to ensure consistency.
+2. Improve Script Outline Generation
+Review and enhance the logic of Script 1 to generate structured, clear, and well-
+organized outlines. Validate against multiple test cases.
+Milestone 2: Implemet RAG with Web Search
+3. Implement RAG with Web Search
+Integrate real-time web search to supplement content generation. Develop a retrieval 
+system that fetches relevant information and merges it with generated output for 
+better accuracy.
+A)SEARCH ENGINE API:
+PyPI duckduckgo-searchhttps://brave.com/search/api/
+Serper - The World's Fastest and Cheapest Google Search API
+B)VECTOR DATABASE
+FAISShttps://python.langchain.com/docs/introduction/
+C)WEB CRAWL
+crawl4ai
+unclecode
+D)DB STORAGEhttps://www.trychroma.com/
+ Workflow Overview
+ using DuckDuckGo API.Search for articles
+ using BeautifulSoup.Scrape & clean article content
+ from each article using a Transformer-based 
+summarizer.
+Summarize key insights
+ in ChromaDB for semantic search.Store & retrieve summaries
+ using OpenAI’s GPT API based on retrieved summaries.Generate a new article
+Optimized Approach (Without LangChain)
+For now,  since our pipeline is simple and efficient. 
+However, if you later expand to  or , 
+LangChain could be useful.
+we don’t need LangChain
+multi-document querying advanced retrieval
+ Should We Use LangChain?
+Using  can be  in this case.LangChain helpful but not mandatory
+When to Use LangChain
+ – LangChain makes it easier to swap 
+between OpenAI, Mistral, or Claude.
+If you want modular LLM orchestration
+ – LangChain can handle 
+document chunking, embedding, and retrieval seamlessly.
+If you need Retrieval-Augmented Generation (RAG)
+ – ChromaDB, FAISS, Weaviate, 
+etc., are easier to switch between.
+If you work with different vector databases
+ steps using Python's  and 
+ for non-blocking HTTP requests. This should help speed up the crawling 
+and processing of multiple articles concurrently.
+Parallels the crawling and summarization asyncio
+aiohttp
+ What’s the Time Benefit?
+This approach is much faster because:
+•Instead of waiting for each request to complete sequentially, all HTTP requests 
+happen in parallel.
+•Summarization, which is CPU-bound, still happens sequentially but is 
+interspersed with other asynchronous tasks.
+•Crawling times for  will be , depending 
+on your network and processing speed.
+5, 10, or 20 articles drastically reduced
+Conclusion
+• makes the process more efficient by reducing the time spent 
+waiting on each HTTP request.
+Parallelization
+• can be completed in , with 
+taking just  depending on the specifics.
+Crawling 5-10 articles under a minute 20 articles
+a few minutes
+Step Without Parallelization 
+(Sequential)
+With Parallelization (Async)
+Search Engine Query 1-2 sec per query 1-2 sec per query (no change)
+Article Fetching 2-5 sec per article (sequential) 2-5 sec per article (concurrent)
+Summarization 1-3 sec per article (sequential) 1-3 sec per article (still sequential, 
+but faster overall)
+Storage in ChromaDB ~1 sec per article ~1 sec per article
+Total Time for 5 Articles 40-60 sec 20-30 sec
+Total Time for 10 Articles 80-120 sec 40-60 sec
+Total Time for 20 Articles 150-200 sec 75-120 sec
+Data Flow
+1. Search for Articles:
+•Query Brave Search for articles.
+•Asynchronously retrieve search results (URLs of articles).
+2. Fetch & Clean Articles:
+•Concurrently fetch content from each URL.
+•Parse and clean the content to get the main text.
+3. Summarize Articles:
+•Use a summarization model to create short, meaningful summaries of each 
+article.
+4. Generate Embeddings & Store in ChromaDB:
+•Convert each summary into an embedding (via Sentence-BERT or similar).
+•Store embeddings in ChromaDB for future semantic search.
+5. Semantic Search via LangChain:
+•Input a query and retrieve the most relevant summaries using LangChain 
+and ChromaDB.
+6. Generate New Article with OpenAI:
+•Use the retrieved summaries as context for OpenAI’s GPT to generate a full, 
+well-structured article.
+ Key Tools in the Pipeline
+• For fast and privacy-conscious article search.Brave Search API:
+• For concurrent crawling and HTTP requests.asyncio/aiohttp:
+• For HTML parsing and cleaning.BeautifulSoup:
+• For article summarization.Hugging Face Transformers (BART/T5):
+• For generating article embeddings.Sentence-BERT:
+• For storing and querying embeddings.ChromaDB:
+• For semantic search and LLM orchestration.LangChain:
+•List
+Sources, How to do and links:https://python.langchain.com/docs/integrations/tools/https://cookbook.openai.com/examples/vector_databases/qdrant/qa_with_langchain_qdrant_and_openai
+VECTOR DATABASE
+Using Qdrant for embeddings search | OpenAI Cookbookhttps://medium.com/@adrirajchaudhuri/understanding-vector-search-using-qdrant-77a06c180e02https://www.mixedbread.ai/docs/embeddings/overview
+Hugging Face Forums How to Use HuggingFace free Embedding models
+DEV Community Introduction to Semantic Search with Python and OpenAI API
+Use Langchain:https://python.langchain.com/docs/tutorials/rag/
+CAG:https://medium.com/@sabaybiometzger/cache-augmented-generation-cag-from-scratch-441adf71c6a3
+Tutorial:
+Below is a high-level summary and two balanced solution approaches
+tailored to your needs—retrieving articles via search engine APIs
+and then using summarization for producing new articles. --- ###
+**Overview** You want to gather articles using search engine APIs
+and then “deep-read” and summarize these articles as supportive
+content for generating new articles. Two complementary approaches
+can be considered: 1. **Using Search Engine APIs Alone (Option A)**
+2. **Integrating a Vector Database with Search Engine APIs (Option
+B)** Both approaches can be implemented in Python within a Jupyter
+Notebook. They differ mainly in how they handle the aggregation and
+retrieval of source content. --- ### **Solution 1: Using Search
+Engine APIs for Content Retrieval and Summarization** **Concept:** -
+**Search Engine API:** Use a search API like DuckDuckGo, Brave, or
+Serper to fetch URLs and metadata of relevant articles. - **Content
+Fetching:** Retrieve the raw HTML/text from the returned URLs and
+clean the content (e.g., removing scripts, ads, and boilerplate). -
+**Summarization Pipeline:** Process the gathered content using a
+Summarization Pipeline:  Process the gathered content using a
+summarization model (for example, one from Hugging Face
+Transformers) to produce concise summaries or a composite article.
+**Workflow:** 1. **Query & Retrieve:** - Use the chosen API
+(DuckDuckGo-search is a popular open-source option) to search for
+your topic. - Collect a list of URLs for 20 or so articles. 2.
+**Fetch & Clean Articles:** - For each URL, fetch the webpage
+content using a tool like `requests`. - Clean and parse the content
+with libraries such as `BeautifulSoup`. 3. **Summarize:** - Break
+the cleaned text into manageable chunks (if necessary). - Use a
+summarization model (e.g., Facebook’s BART or T5 models) to create
+summaries. - Optionally, combine these summaries to generate an
+overall supportive context for your article generation. **Pros:** -
+**Simplicity:** Direct retrieval and summarization without extra
+overhead. - **Cost-effective & Open Source:** Most search APIs (like
+DuckDuckGo-search) are free or inexpensive. - **Ease of
+Integration:** Fewer components mean easier debugging and faster
+prototyping. **Considerations:** - **Content Relevance:** Summaries
+are generated directly from raw search results, which may vary in
+quality. - **Scalability:** Handling a large number of articles
+might become cumbersome without further structure. --- ###
+**Solution 2: Integrating a Vector Database with Search Engine
+APIs** **Concept:** - **Search Engine API for Retrieval:** As in
+Solution 1, use a search engine API to fetch article URLs and
+content. - **Vector Database for Deep Reading:** Use a vector
+database (such as FAISS, Qdrant, or leverage LangChain’s
+integrations) to store embeddings of each article. - **Semantic
+Search & Summarization:** When generating a new article, use a
+semantic query to retrieve the most relevant passages from your
+stored content. These can then be summarized or directly used as
+context for generation. **Workflow:** 1. **Article Collection:** -
+Retrieve articles using your chosen search engine API. - Fetch and
+clean each article similarly to the first solution. 2. **Embedding &
+Indexing:** - Process each article with a sentence embedding model
+(for example, using SentenceTransformers). - Store these embeddings
+in a vector database like FAISS or Qdrant. - Alternatively, use
+LangChain, which abstracts the vector database layer and allows you
+to switch between options easily. 3. **Semantic Retrieval:** - When
+you need to support the generation of a new article, embed your
+query and perform a semantic search on your vector database. -
+Retrieve the top relevant articles or excerpts based on semantic
+similarity. 4. **Summarization:** - Summarize or “stitch together”
+the retrieved content using a summarization model to produce a
+coherent supportive context for your article. **Pros:** - **Enhanced
+Relevance:** Semantic search retrieves content based on meaning
+rather than keyword matching, which leads to deeper and more
+contextually aligned summaries. - **Scalability & Flexibility:**
+Easily update your database as you add more articles and adjust
+retrieval parameters. - **Seamless Integration:** Using LangChain
+can simplify integration between vector storage and language models.
+**Considerations:** - **Additional Setup:** Setting up a vector
+database adds complexity compared to a simple search/summarization
+pipeline. - **Resource Overhead:** While vector databases like FAISS
+or Qdrant are efficient, they introduce extra steps that need to be
+managed and maintained. - **Technical Learning Curve:** There might
+be a learning curve if you’re new to embedding models and vector
+be a learning curve if you’re new to embedding models and vector
+stores, though frameworks like LangChain help reduce this burden.
+--- ### **Balanced Recommendation** - **For Simplicity and Quick
+Prototyping:** **Solution 1 (Search Engine API + Summarization)** is
+ideal. It minimizes components and is easier to implement, making it
+a great starting point for quickly testing ideas. - **For Deeper
+Context and Scalable Semantic Retrieval:** **Solution 2 (Search
+Engine API + Vector Database)** offers a more robust solution. It
+allows you to perform deep reading across multiple articles and
+retrieve the most contextually relevant content, which is
+particularly beneficial when supporting complex article generation.
+Both approaches can be implemented in Jupyter Notebook with open-
+source libraries, and you can even start with the simpler method and
+later evolve into integrating a vector database as your needs for
+context and retrieval sophistication grow.
+3.Milestone. Multi-Image Wrapper for CC0 Sources
+Create a flexible wrapper to source images from multiple CC0 repositories. Allow 
+users to dynamically select their preferred image source, ensuring better visual 
+content integration.
+This proposal aims to implement a  in a 
+Python script, utilizing free  (Creative Commons Zero) image libraries via API 
+integration. The primary sources will include .
+multi-wrapper for image generation
+CC0
+Unsplash, Pexels, and Pixabay
+Key Features & Implementation
+1. Customizable Image Source Selection
+•Users can specify a  image library and a 
+option.
+primary secondary fallback
+•If the primary source does not return a result, the script will attempt to fetch 
+an image from the secondary source.
+•If both sources fail to provide an image, the script will proceed without an 
+image.
+2. Error Handling & Retry Mechanism
+•Implement a  for API requests to handle temporary failures.retry limit
+•If all retries fail for both primary and secondary sources, the script will 
+continue execution without an image.
+3. Integration with Existing Script
+•Maintain existing input parameters, including:
+◦  to be included in the output.Number of images
+◦  for image placement.Randomized layout
+4. Flexible Image Positioning
+•Users can choose where images will be placed:
+◦ Under the heading
+Under the heading
+◦ Below a paragraph
+◦ In the middle of a paragraph
+•If using a , the script will scatter images 
+randomly within the text, ensuring they fit within the defined maximum limit.
+random number of images
+This approach ensures a  image selection and 
+placement system while leveraging free, high-quality image sources.
+flexible, reliable, and user-friendly
+5. Image Recognition & Metadata Injection For Wordpress 
+Purpose
+Enhance images by recognizing content and automatically adding relevant attributes. 
+Improve metadata handling for better SEO and structured image tagging.
+Automatically generate SEO-friendly metadata for images using AI, ensuring:
+Search engine visibility
+Accessibility compliance
+Content relevance
+WordPress compatibility
+Core Workflow
+graph TD A[Image Input] --> B[BLIP Analysis] B --> C[Technical
+Caption] C --> D[FLAN-T5 LLM] D --> E[Structured Metadata] B -->
+F[File Validation] E --> G[Length Checks] F --> H[Filename
+Generation] G --> I[SEO Sanitization] H --> J[WordPress API] I --> J
+Execution Flow Diagram
+[Image Input] → (BLIP) → [Caption] → (FLAN-T5) → [Metadata] ↓ ↓
+[File Validation] [Length Checks] ↓ ↓ [Filename Gen] [Content
+Sanitization] \_______________________↓ [WordPress API]
+Key Components
+A. Image Analysis (BLIP Model)
+•: Any JPG/PNG image (≤5MB)Input
+•: Technical descriptionOutput
+:Example
+Input Image → "Two hikers overlooking mountain valley at sunset"
+Input Image → "Two hikers overlooking mountain valley at sunset"
+B. Metadata Generation (FLAN-T5 LLM)
+•:Rules
+1. Title: ≤60 chars (Include primary keyword) 2. Caption: ≤125 ch
+ars (Action-oriented) 3. Description: ≤160 chars (Storytelling fo
+rmat) 4. Alt Text: ≤125 chars (No "image of" phrases)
+•:Prompt Template
+PROMPT = '''Generate SEO metadata for: {BLIP_output} Title: [Prim
+ary Keyword + Location/Year] Caption: [Action + Context] Descript
+ion: [Benefits/Story + Keywords] Alt Text: [Object + Activity + E
+nvironment]'''
+C. Filename Management
+•:Strategy
+1. Convert title to lowercase slug ("Golden Forest" → golden-fore
+st.jpg) 2. Append incremental suffix on duplicates (golden-forest
+_02.jpg) 3. Enforce 200-char limit (WordPress policy)
+4. Implementation Steps
+1. Environment Setup
+pip install transformers python-slugify Pillow requests
+2. Configuration
+# WordPress Credentials WP_API_URL = "yoursite.com/wp-json/wp/v2"
+WP_USER = "seo-bot" WP_APP_PWD = "xxxx xxxx xxxx xxxx" # Applicat
+ion password # AI Models CAPTION_MODEL = "Salesforce/blip-image-c
+aptioning-base" LLM_MODEL = "google/flan-t5-xl"
+3. Execution Command
+python image_seo.py --keyword "alpine-hiking" --max-retries 3
+5. Performance Benchmarks
+Metric Average Time Optimization Enabled
+Image Analysis 8.2s FP16 Precision
+Metadata Generation 11.1s 8-bit Quantization
+WordPress Upload 14.7s HTTP/2 Multiplexing
+Total/Image 34s Parallel Processing
+Key Libraries
+pip install transformers[torch] sentencepiece python-slugify
+Quality Control Measures
+1. Metadata Validation
+•Reject empty/placeholder values ("Untitled", "Image 01")
+•Ensure alt text contains NO "image of" phrases
+2. Duplicate Prevention
+def is_duplicate_media(alt_text, wp_api): """Check existing media
+for identical alt texts""" return any(item['alt_text'] == alt_tex
+t for item in wp_api.list_media())
+3. LLM Output Safeguards
+•Blocklist: Remove marketing buzzwords ("amazing", "best ever")
+•Geographic normalization: Convert "America" → "United States"
+Milestone 4: Implement Multiple LLM Models from 
+different providers.
+6. Multi-LLM Support & Routing
+Enable support for multiple LLMs (LLAMA, Deepseek, Gemini, Claude, OpenAI). 
+Implement a routing system to select the best model dynamically and handle 
+Implement a routing system to select the best model dynamically and handle 
+fallbacks efficiently.
+•LangChain Router Agents Documentation
+Explains how to route between multiple LLMs and build flexible multi-model 
+pipelines.LangChain Router Agents Documentation
+•Tenacity – Python Retry Library
+Provides robust retry logic, which is essential for fallback mechanisms when 
+integrating multiple LLMs.Tenacity GitHub Repository
+•Hugging Face Transformers Documentation
+Although primarily for open-source models, this resource shows how to 
+standardize model usage in Python, which is conceptually similar to wrapping 
+proprietary APIs.
+There are several alternatives that provide similar multi-LLM routing and chaining 
+capabilities as LangChain. For example:
+• is an open-source framework explicitly built for dynamically routing 
+requests between multiple LLMs based on performance and cost considerations. 
+It uses preference data and various routing strategies (like matrix factorization 
+and weighted ranking) to decide which model to call, making it a robust 
+alternative.
+RouteLLMgithub.com
+• offers an example project that demonstrates how to serve 
+a multi-LLM application. It wraps multiple LLM APIs behind a unified endpoint 
+and includes fallback mechanisms, which is very much in line with what 
+LangChain does in terms of modular LLM orchestration.
+BentoML’s llm-routergithub.com
+• component (available in Rasa Pro) allows you to 
+distribute and load balance requests across multiple LLMs within a 
+conversational AI setup. While it’s often used for dialogue systems, its routing 
+mechanism is flexible enough to handle various LLMs and can be a good 
+alternative if you’re working on chatbot applications.
+Rasa’s Multi-LLM Routing
+Other Links:
+litellm
+BerriAI
+7. Jupyter Notebook For Google Colab And Playground for 
+Prompt Testing
+Develop an interactive Colab notebook to preview outputs for different prompts. 
+Ensure real-time execution and visualization of generated content for better usability.

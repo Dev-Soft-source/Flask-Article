@@ -1,0 +1,338 @@
+🔒
+🐈‍⬛
+Copyscriptai Finalize Upgrade Timelime
+Get updates
+Get Notion free
+🔒
+🐈‍⬛ Page icon
+Copyscriptai Finalize Upgrade Timelime
+1.)Scripts hit openrouter hourly limit.
+Any way to avoid this? By add any time for wait
+Note from chatgpt:
+Automatically back off on 429 errors
+Wrap your calls with a retry decorator that adds exponential backoff and jitter. Using the tenacity library.
+Python
+Copy
+from
+tenacity
+import
+retry
+,
+wait_exponential_jitter
+,
+stop_after_attempt
+,
+retry_if_exception_type
+import
+requests
+@retry
+(
+retry
+=
+retry_if_exception_type
+(
+requests
+.
+exceptions
+.
+HTTPError
+)
+,
+wait
+=
+wait_exponential_jitter
+(
+initial
+=
+1
+,
+max
+=
+60
+)
+,
+stop
+=
+stop_after_attempt
+(
+5
+)
+)
+def
+call_with_backoff
+(
+payload
+)
+:
+resp
+=
+requests
+.
+post
+(
+"https://openrouter.ai/api/v1/chat/completions"
+,
+headers
+=
+{
+"Authorization"
+:
+f"Bearer
+{
+API_KEY
+}
+"
+}
+,
+json
+=
+payload
+)
+resp
+.
+raise_for_status
+(
+)
+# triggers HTTPError on 429
+return
+resp
+.
+json
+(
+)
+​
+https://openrouter.ai/docs/api-reference/limits
+2.)Wordpress API Connection, Missing Setup Features //BOTH SCRIPT//
+Merge for all scripts the same way to API login via .env file or main.py only for all WP details
+Fix User Login For Script1(There not option to post with different other selected users just with only first one admin)
+Add Category Option (Category ID; default to uncatagorized) for script1
+Add Option to choose post status - draft,published,pending review (draft is set up as default only)
+Add Wordpress URL Link when Article post is successfully posted if it’s possible to add into script or list of url link address after finish script.
+3.)Fix Grammar Tool (Humanization Work Only) //SCRIPT 1//
+✅ FIXED: Error in grammar checking: RetryError[<Future at 0x2a4e2c8fd50 state=finished raised KeyError>]
+2.)Add sequence option when is humanization and language tool turned as true for both //BOTH SCRIPT//
+✅ FIXED: first run humanization then run language tool (language correction) if user use both features.
+As far as this is possible and doesn't require huge interventions in the code and the whole functioning for both scripts.
+3.)How to prevent long subtitles //SCRIPT 1 ONLY//
+Is there any way how to avoid to hallucination of this in script1, please?
+https://copyscriptai.cloud/how-to-tell-if-your-cat-is-in-pain/
+🔒
+Image
+4.)Summary fix
+Is there way to edit prompt or avoid this text and change summary generation?
+https://copyscriptai.cloud/learn-how-to-grow-green-tomatoes-at-home-farm-easily/
+https://copyscriptai.cloud/master-how-to-grow-tomatoes-easily-at-home/
+🔒
+Image
+5.)Basic Image Handler //BOTH SCRIPT//
+Missing option to align position of images to center, left or right
+Python
+Copy
+alignment
+=
+"aligncenter"
+,
+# or 'alignleft', 'alignright'
+​
+Missing option for compress /pillow
+Python
+Copy
+from
+PIL
+import
+Image
+# Open an image file
+with
+Image
+.
+open
+(
+"input.jpg"
+)
+as
+img
+:
+# Compress and save the image
+img
+.
+save
+(
+"compressed.jpg"
+,
+format
+=
+"JPEG"
+,
+optimize
+=
+True
+,
+quality
+=
+70
+)
+​
+Add Option to prevent use the same images at the same article; use only one image from unsplash search per article
+6.)Control How many titles are scraped at max for PAA
+How can we edit and modify the maximum number of questions that is collected in the PAA section using SERPAPI. Is there any possibility of checking or editing?
+🔒
+Image
+Is default value set up for 5? Is possible to set up random value from 3-10 or zero if there’s no answer?
+7.)Titles changes
+
+Enable option for title craft with prompt by true or false. When is enabled
+3.)Explain how scripts work with context information
+4.)Explain me SERPAPI credits
+what activity and funcions use SERPAPI (I haven't used external links and PAA and credits are consumed)
+5.)Explain how scripts work with context information
+6.)Explain me SERPAPI credits
+what activity and funcions use SERPAPI
+SCRIPT2 ONLY
+1.Time of produce article
+Article creation with script 2 is too long. In average it takes 7 minutes to create with 2 subtitles
+I have a feeling that there are some unnecessary functions in the code that increase the production time of the whole article, for example the creation of the structure of the whole article, which is not used in the end - “Outline creation”
+Reduce the time to produce articles using script number2. The time to produce one article is too long due to the minimal amount of subheadings that the user specifies in the input.csv file
+I think that it is working now in the latest version I noticed that outline creation is used in process. Maybe just a check it and remove it.
+4subs(no rag)
+Model
+Average time to produce
+Note
+1
+google/gemini-2.0-flash-exp:free
+6-12 mins
++ PAA
+2
+mistralai/mistral-nemo:free
+1-3 mins
+- PAA
+3
+deepseek/deepseek-chat-v3-0324:free
+4-10 mins
+- PAA
+2. Parse CSV file
+If we put more than one line for article creation is done without any issue if all articles contains the same number of subtitles.
+
+As you can see there are two lines - two articles with 3x Subtitles. It work without issue.
+🔒
+Image
+But when I tried to add various number subtitles for each article - for each line it stuck and comes with error.
+Q : Is possible to edit way of parse of csv file from subtitle1 - subtitle15 even if every line contains different amount of subtitles. Example 1st article have 3 subtitles ; 2nd article have 5subtitles ; 3rd article have 1 subtitle. Maybe some kind of error handling for this case.
+🔒
+Image
+In this case is not possible to parse and go on in script produce on the same amount of subtitles.
+🔒
+Image
+The same amount of subtitles working smooth.
+3.Language Tool
+Language feature does’t work in script 2
+4.PAA titles removed when is humanization enabled
+- Often happen that there’s no used scraped titles (headings) from Google Serp. Script just create paragraphs. Note: I think that it is caused when is humanization feature enabled.
+Oliver Harrison
+Grow delicious tomatoes at home with a little practice. Star…
+​
+Oliver Harrison
+Grow green tomatoes at home, it’s easy. Start with good seed…
+​
+🔒
+Image
+5.Fix to prefix url
+Fix way how to script 2 produce prefix to use just long-tail keyword not full article title. In caase of duplication use numbers.
+🔒
+Image
+🔒
+Image
+Note:
+Script 1 working fine for that.
+🔒
+Image
+6.My Windows MS Visual Code issue with libraries (if there’s any possibility to solve this).
+I have to manual install rich + dotenv libraries then other libraries without certain version (==x.y.z) from requirements.txt file to be able run Script2 on Windows. When I install the latest versions of the libraries it worked. Maybe conflict of libraries or missing necessary libraries for windows
+Not priority for fix this. You can skip this point.
+7.What does it mean when script hit the limit with tokens?
+🔒
+Image
+Or any potential issues which can cause longer time for produce article?
+🔒
+Image
+8.Why we need to use openai in this case and library tiktoken and encoding?
+🔒
+Image
+9.hallucination from llm model + RAG /not tested properly yet if it’s just LLM model case
+Oliver Harrison
+Here is a title that meets the guidelines:Organic Carrot Gar…
+​
+https://copyscriptai.cloud/here-is-a-blog-post-with-the-following-titlegrowing-watermelons-from-seed-to-sweetness-a-proven-guide/
+=============
+🔒
+Image
+Serious problem with subtitles when script create repetitive paragraphs.
+When you want to get longer article and create more sections with more than 4 sections or paragraphs then script goes crazy and produce repetitive sentences.
+🔒
+Image
+Example when I tried to produce longer paragraphs:
+Oliver Harrison
+How to Grow Organic Carrot in the Garden for Perfect Results
+​
+Oliver Harrison
+How to Grow Organic Watermelon in Your Own Garden Successful…
+​
+🔒
+Image
+Look at paragraphs then are almost identical and the same. For this generation I used deepseek/deepseek-chat:free LLM model and even other works the same way. Script 2 works only up to sections. In this case I haven’t used even RAG.
+In this article was used also RAG:
+Oliver Harrison
+How to Grow Organic Apricot in Own Garden Successfully at Ho…
+​
+JavaScript
+Copy
+openrouter_model
+=
+"meta-llama/llama-4-scout:free"
+,
+​
+🔒
+Image
+Is that related to context window size?
+Another case - used two sections only:
+🔒
+Image
+Generated article with RAG search:
+https://copyscriptai.cloud/grow-organic-blueberries-in-your-garden-with-these-simple-steps/
+JavaScript
+Copy
+openrouter_model
+=
+"meta-llama/llama-4-scout:free"
+,
+​
+Generated article with RAG search:
+Oliver Harrison
+Secret To How To Grow Organic Blackcurrant In Own Garden
+​
+🔒
+Image
+JavaScript
+Copy
+google
+/
+gemini
+-
+2.0
+-
+flash
+-
+exp
+:
+free
+-
+1mil tokens
+​
+The same model + RAG + 5 Sections /no changes
+🔒
+Image
+https://copyscriptai.cloud/grow-organic-blackcurrant-in-own-garden-secret-revealed/
+================================================== DO NOT SOLVE THESE ISSUES UNDER=================
+1.RAG
+error to open url (cloudflare)
+never used parameter : rag_openrouter_model="meta-llama/llama-4-maverick:free",
+how to control number of scraped URLs

@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator - {% block title %}{% endblock %}</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Custom styles */
+        .script-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .script-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+    </style>
+    {% block head %}{% endblock %}
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Article Generator
+                    </a>
+                    <div class="hidden md:flex space-x-4">
+                        <a href="index.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Home</a>
+                        <a href="script_selection.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Script Selection</a>
+                        <a href="config_editor.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Configuration</a>
+                        <a href="input_editor.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Input</a>
+                        <a href="generation.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Generation</a>
+                        <a href="results.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Results</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <span class="bg-indigo-700 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span id="active-script" class="font-bold">None</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Home</a>
+                <a href="script_selection.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Script Selection</a>
+                <a href="config_editor.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Configuration</a>
+                <a href="input_editor.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Input</a>
+                <a href="generation.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Generation</a>
+                <a href="results.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Results</a>
+                <div class="px-3 py-2">
+                    <span class="bg-indigo-800 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span class="active-script-mobile font-bold">None</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        {% block content %}{% endblock %}
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Article Generator. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-indigo-300">Documentation</a>
+                    <a href="#" class="hover:text-indigo-300">GitHub</a>
+                    <a href="#" class="hover:text-indigo-300">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Get active script from localStorage or set default
+        document.addEventListener('DOMContentLoaded', function() {
+            const activeScript = localStorage.getItem('activeScript') || 'None';
+            document.getElementById('active-script').textContent = activeScript;
+            
+            // Update all instances of active script display
+            const activeScriptElements = document.querySelectorAll('.active-script-mobile');
+            activeScriptElements.forEach(el => {
+                el.textContent = activeScript;
+            });
+        });
+
+        // Function to set active script
+        function setActiveScript(scriptId) {
+            localStorage.setItem('activeScript', scriptId);
+            document.getElementById('active-script').textContent = scriptId;
+            
+            // Update all instances of active script display
+            const activeScriptElements = document.querySelectorAll('.active-script-mobile');
+            activeScriptElements.forEach(el => {
+                el.textContent = scriptId;
+            });
+            
+            // Redirect to appropriate page based on script selection
+            if (scriptId !== 'None') {
+                window.location.href = 'config_editor_' + scriptId.toLowerCase() + '.html';
+            }
+        }
+    </script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

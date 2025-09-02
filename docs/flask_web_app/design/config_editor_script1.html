@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Article Generator - Script 1 Configuration</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body class="bg-gray-50 min-h-screen flex flex-col">
+    <!-- Navigation -->
+    <nav class="bg-indigo-600 text-white shadow-md">
+        <div class="container mx-auto px-4 py-3">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center space-x-4">
+                    <a href="index.html" class="text-xl font-bold flex items-center">
+                        <i class="fas fa-newspaper mr-2"></i>
+                        Article Generator
+                    </a>
+                    <div class="hidden md:flex space-x-4">
+                        <a href="index.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Home</a>
+                        <a href="script_selection.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Script Selection</a>
+                        <a href="config_editor.html" class="hover:text-indigo-200 px-3 py-2 rounded-md bg-indigo-700">Configuration</a>
+                        <a href="input_editor.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Input</a>
+                        <a href="generation.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Generation</a>
+                        <a href="results.html" class="hover:text-indigo-200 px-3 py-2 rounded-md">Results</a>
+                    </div>
+                </div>
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-white focus:outline-none">
+                        <i class="fas fa-bars text-xl"></i>
+                    </button>
+                </div>
+                <div class="hidden md:block">
+                    <span class="bg-indigo-700 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span id="active-script" class="font-bold">Script1</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-indigo-700">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="index.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Home</a>
+                <a href="script_selection.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Script Selection</a>
+                <a href="config_editor.html" class="block px-3 py-2 rounded-md bg-indigo-800">Configuration</a>
+                <a href="input_editor.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Input</a>
+                <a href="generation.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Generation</a>
+                <a href="results.html" class="block px-3 py-2 rounded-md hover:bg-indigo-800">Results</a>
+                <div class="px-3 py-2">
+                    <span class="bg-indigo-800 px-3 py-1 rounded-full text-sm">
+                        Active Script: <span class="active-script-mobile font-bold">Script1</span>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow container mx-auto px-4 py-6">
+        <!-- Page Header -->
+        <div class="mb-6">
+            <div class="flex items-center justify-between">
+                <div>
+                    <h1 class="text-3xl font-bold text-gray-800 mb-2">Script 1 Configuration</h1>
+                    <p class="text-gray-600">Configure settings for Script 1 article generation.</p>
+                </div>
+                <div class="flex space-x-2">
+                    <button id="save-config" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-save mr-2"></i> Save
+                    </button>
+                    <button id="load-config" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-folder-open mr-2"></i> Load
+                    </button>
+                    <button id="reset-config" class="bg-gray-600 hover:bg-gray-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300 flex items-center">
+                        <i class="fas fa-undo mr-2"></i> Reset
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Configuration Form -->
+        <form id="config-form" class="space-y-8">
+            <!-- Tabs -->
+            <div class="border-b border-gray-200">
+                <nav class="-mb-px flex space-x-8">
+                    <button type="button" class="config-tab whitespace-nowrap py-4 px-1 border-b-2 border-indigo-500 font-medium text-sm text-indigo-600" data-tab="api-keys">
+                        API Keys
+                    </button>
+                    <button type="button" class="config-tab whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="article-structure">
+                        Article Structure
+                    </button>
+                    <button type="button" class="config-tab whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="generation-settings">
+                        Generation Settings
+                    </button>
+                    <button type="button" class="config-tab whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="feature-toggles">
+                        Feature Toggles
+                    </button>
+                    <button type="button" class="config-tab whitespace-nowrap py-4 px-1 border-b-2 border-transparent font-medium text-sm text-gray-500 hover:text-gray-700 hover:border-gray-300" data-tab="advanced-settings">
+                        Advanced Settings
+                    </button>
+                </nav>
+            </div>
+
+            <!-- API Keys Tab -->
+            <div id="api-keys" class="config-tab-content">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-xl font-bold text-gray-800 mb-4">API Keys & Credentials</h2>
+                    
+                    <div class="grid md:grid-cols-2 gap-6">
+                        <!-- OpenAI API Key -->
+                        <div>
+                            <label for="openai_key" class="block text-sm font-medium text-gray-700 mb-1">OpenAI API Key</label>
+                            <div class="relative">
+                                <input type="password" id="openai_key" name="openai_key" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                <button type="button" class="toggle-password absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Your OpenAI API key for accessing GPT models.</p>
+                        </div>
+                        
+                        <!-- OpenAI Model -->
+                        <div>
+                            <label for="openai_model" class="block text-sm font-medium text-gray-700 mb-1">OpenAI Model</label>
+                            <select id="openai_model" name="openai_model" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="gpt-4o-mini-2024-07-18">GPT-4o Mini</option>
+                                <option value="gpt-4o">GPT-4o</option>
+                                <option value="gpt-4-turbo">GPT-4 Turbo</option>
+                                <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                            </select>
+                            <p class="mt-1 text-xs text-gray-500">The OpenAI model to use for article generation.</p>
+                        </div>
+                        
+                        <!-- OpenRouter API Key -->
+                        <div>
+                            <label for="openrouter_api_key" class="block text-sm font-medium text-gray-700 mb-1">OpenRouter API Key</label>
+                            <div class="relative">
+                                <input type="password" id="openrouter_api_key" name="openrouter_api_key" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                <button type="button" class="toggle-password absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Your OpenRouter API key for accessing various LLM models.</p>
+                        </div>
+                        
+                        <!-- OpenRouter Model -->
+                        <div>
+                            <label for="openrouter_model" class="block text-sm font-medium text-gray-700 mb-1">OpenRouter Model</label>
+                            <select id="openrouter_model" name="openrouter_model" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                <option value="meta-llama/llama-3.3-70b-instruct:free">Llama 3.3 70B (Free)</option>
+                                <option value="anthropic/claude-3-opus-20240229">Claude 3 Opus</option>
+                                <option value="anthropic/claude-3-sonnet-20240229">Claude 3 Sonnet</option>
+                                <option value="meta-llama/llama-3-70b-instruct">Llama 3 70B</option>
+                            </select>
+                            <p class="mt-1 text-xs text-gray-500">The OpenRouter model to use for article generation.</p>
+                        </div>
+                        
+                        <!-- Use OpenRouter Toggle -->
+                        <div class="md:col-span-2">
+                            <div class="flex items-center">
+                                <input type="checkbox" id="use_openrouter" name="use_openrouter" class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded" checked>
+                                <label for="use_openrouter" class="ml-2 block text-sm text-gray-700">Use OpenRouter instead of OpenAI</label>
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Enable to use OpenRouter models instead of direct OpenAI API.</p>
+                        </div>
+                        
+                        <!-- SERP API Key -->
+                        <div>
+                            <label for="serp_api_key" class="block text-sm font-medium text-gray-700 mb-1">SERP API Key</label>
+                            <div class="relative">
+                                <input type="password" id="serp_api_key" name="serp_api_key" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                                <button type="button" class="toggle-password absolute inset-y-0 right-0 pr-3 flex items-center text-gray-500 hover:text-gray-700">
+                                    <i class="fas fa-eye"></i>
+                                </button>
+                            </div>
+                            <p class="mt-1 text-xs text-gray-500">Your SERP API key for search engine results.</p>
+                        </div>
+                        
+                        <!-- WordPress Settings -->
+                        <div>
+                            <label for="wordpress_url" class="block text-sm font-medium text-gray-700 mb-1">WordPress URL</label>
+                            <input type="text" id="wordpress_url" name="wordpress_url" class="w-full px-4 py-2 border border-gray-300 rounded-md focus:ring-indigo-500 focus:border-indigo-500">
+                            <p class="mt-1 text-xs text-gray-500">Your WordPress site URL (if using WordPress upload).</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+</form>
+</main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white py-6">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-4 md:mb-0">
+                    <p>&copy; 2024 Article Generator. All rights reserved.</p>
+                </div>
+                <div class="flex space-x-4">
+                    <a href="#" class="hover:text-indigo-300">Documentation</a>
+                    <a href="#" class="hover:text-indigo-300">GitHub</a>
+                    <a href="#" class="hover:text-indigo-300">Support</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- JavaScript -->
+    <script>
+        // Mobile menu toggle
+        document.getElementById('mobile-menu-button').addEventListener('click', function() {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // Tab switching
+        const tabButtons = document.querySelectorAll('.config-tab');
+        const tabContents = document.querySelectorAll('.config-tab-content');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => {
+                    btn.classList.remove('border-indigo-500', 'text-indigo-600');
+                    btn.classList.add('border-transparent', 'text-gray-500');
+                });
+
+                // Add active class to clicked button
+                button.classList.remove('border-transparent', 'text-gray-500');
+                button.classList.add('border-indigo-500', 'text-indigo-600');
+
+                // Hide all tab contents
+                tabContents.forEach(content => {
+                    content.classList.add('hidden');
+                });
+
+                // Show the selected tab content
+                const tabId = button.getAttribute('data-tab');
+                document.getElementById(tabId).classList.remove('hidden');
+            });
+        });
+
+        // Toggle password visibility
+        const toggleButtons = document.querySelectorAll('.toggle-password');
+        toggleButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const input = this.parentElement.querySelector('input');
+                const type = input.getAttribute('type') === 'password' ? 'text' : 'password';
+                input.setAttribute('type', type);
+                
+                // Toggle icon
+                const icon = this.querySelector('i');
+                if (type === 'text') {
+                    icon.classList.remove('fa-eye');
+                    icon.classList.add('fa-eye-slash');
+                } else {
+                    icon.classList.remove('fa-eye-slash');
+                    icon.classList.add('fa-eye');
+                }
+            });
+        });
+
+        // Save configuration
+        document.getElementById('save-config').addEventListener('click', function() {
+            alert('Configuration saved successfully!');
+        });
+
+        // Load configuration
+        document.getElementById('load-config').addEventListener('click', function() {
+            alert('Configuration loaded successfully!');
+        });
+
+        // Reset configuration
+        document.getElementById('reset-config').addEventListener('click', function() {
+            if (confirm('Are you sure you want to reset all configuration settings to default values?')) {
+                document.getElementById('config-form').reset();
+                alert('Configuration reset to defaults.');
+            }
+        });
+
+        // Initialize the first tab as active
+        document.querySelector('.config-tab[data-tab="api-keys"]').click();
+    </script>
+</body>
+</html>
