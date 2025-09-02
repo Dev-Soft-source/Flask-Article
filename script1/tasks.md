@@ -1,0 +1,38 @@
+- Fix issue with repeating the title and intro thingies. <input type="checkbox" checked>
+- Remove config imports and variables from the article generation modules. <input type="checkbox" checked>
+- Remove rich from the article generation modules. <input type="checkbox" checked>
+- Remove "Key points" duplicate. <input type="checkbox" checked>
+- Move `api_validators.py` to `./utils/` <input type="checkbox" checked>
+- Create a Generator class in generatory.py <input type="checkbox" checked>
+- Add image generation and youtube video and perform testing <input type="checkbox" checked>
+- Making sure that the prompts are separated from the modules <input type="checkbox" checked>
+- Config dataclass inside `Generator.generate_article(..., config: Config)` <input type="checkbox" checked>
+- Some configs such as voicetone, blog, articletype, etc. are not being used in the content_generator.py module <input type="checkbox" checked>
+- Add meta excerpt generation for wordpress <input type="checkbox" checked>
+- Add `articleaudience` to the script <input type="checkbox" checked>
+- Rich provider <input type="checkbox" checked>
+- Add HTML tags from original script <input type="checkbox" checked>
+- Fix external links not being added despite being enabled  <input type="checkbox" checked>
+- Get the script's output closer to playground's <input type="checkbox" checked>
+- Add title for the summary section <input type="checkbox" checked>
+- Remove rotation <input type="checkbox" checked>
+- Improve summary and paragraph generation <input type="checkbox" checked>
+- Be able to control number of tokens generated for <input type="checkbox">
+    - Introduction 
+    - Paragraphs 
+    - Conclusion 
+    - Key takeaways 
+    - FAQs 
+    - Meta 
+- Improve the break-up of the components. Right now, file names are confusing and some components need their own files. <input type="checkbox">
+- Check AES the whole script and things. <input type="checkbox">
+- Be able to control the seed of output generation. Different seeds for: <input type="checkbox">
+    - Introduction 
+    - Paragraphs 
+    - Conclusion 
+    - Key takeaways 
+    - FAQs 
+    - Meta
+- PAA's prompt in prompts.py is not being passed to the generate_paa_answer function.
+
+**Inshaa Allah**

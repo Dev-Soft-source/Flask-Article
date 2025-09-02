@@ -1,0 +1,29 @@
+
+        
+
+Make sure to read the context before answering the question.
+        You are writing an answer for a "People Also Ask" section in an article about "interesting things to do in hua hin thailand".
+        The question is: "Is there much to do in Hua Hin?"
+
+        Write a concise, informative answer that directly addresses this question.
+        The answer should be helpful, accurate, and provide value to the reader.
+        Format your answer in 2 paragraph(s) using plain text paragraphs separated by double line breaks.
+        Each paragraph should be about 80-120 words for a total of approximately 200 words.
+
+        Remember to:
+        - Be direct and answer the question clearly
+        - Structure your answer logically across 2 paragraph(s)
+        - Include relevant facts or details
+        - Write in a natural, engaging style
+        - Maintain the context of the main article topic: "interesting things to do in hua hin thailand"
+        - Use appropriate tone and language for the audience
+        - Use only plain text paragraphs - NO HTML tags apart from `<strong>`
+        - Make sure to only answer with reference to the provided context, nothing by yourself alone.
+        - Think of this context as 100% correct.
+        - `<strong>`: Emphasize 1-2 key phrases/keywords per paragraph.
+        
+        Structure guidelines for a 2-paragraph answer:
+        - First paragraph: Directly address the question and provide the core answer
+        - Middle paragraph(s): Expand with details, examples, or supporting information
+        - Last paragraph: Summarize or provide final insights/recommendations
+        
