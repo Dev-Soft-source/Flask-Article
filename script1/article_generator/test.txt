@@ -1,0 +1,1338 @@
+Title: HTML Styles CSS
+Domain: www.w3schools.com
+URL: https://www.w3schools.com/html/html_css.asp
+Content:
+CSS saves a lot of work. It can control the layout of multiple
+web pages all at once.
+CSS = Styles and Colors
+Manipulate Text
+Colors,
+Boxes
+What is CSS?
+Cascading Style Sheets (CSS) is used to format the layout of a webpage.
+With CSS, you can control the color, font, the size of text, the spacing
+between elements, how elements are positioned and laid out, what background
+images or background colors are to be used, different displays for different devices
+and screen sizes, and much more!
+Tip: The word cascading means that a style
+applied to a parent element will also apply to all children elements within the
+parent. So, if you set the color of the body text to "blue", all headings,
+paragraphs, and other text elements within the body will also get the same color (unless you specify
+something else)!
+Using CSS
+CSS can be added to HTML documents in 3 ways:
+Inline - by using the style attribute inside HTML elements
+Internal - by using a <style> element in the <head> section
+External - by using a <link>
+element to link to an external CSS file
+The most common way to add CSS, is to keep the styles in external CSS
+files. However, in this tutorial we will use inline and internal styles, because this is easier to
+demonstrate, and easier for you to try it yourself.
+Inline CSS
+An inline CSS is used to apply a unique style to a single HTML element.
+An inline CSS uses the style attribute of an HTML element.
+The following example sets the text color of the <h1> element to blue,
+and the text color of the <p> element to red:
+An internal CSS is used to define a style for a single HTML page.
+An internal CSS is defined in the <head> section of an HTML page,
+within a <style> element.
+The following example sets the text color of ALL the <h1> elements
+(on that page) to blue, and the text color of ALL the <p> elements to
+red. In addition, the page will be displayed with a "powderblue" background
+color:
+Example
+<!DOCTYPE html> <html> <head> <style>
+body {background-color: powderblue;} h1 {color: blue;} p {color: red;}
+</style> </head> <body>
+<h1>This is a
+heading</h1> <p>This is a paragraph.</p>
+
+--------------------------------------------------------------------------------
+
+Title: CSS: Cascading Style Sheets | MDN
+Domain: developer.mozilla.org
+URL: https://developer.mozilla.org/en-US/docs/Web/CSS
+Content:
+Cascading Style Sheets (CSS) is a [stylesheet](/en-US/docs/Web/API/StyleSheet) language used to describe the presentation of a document written in [HTML](/en-US/docs/Web/HTML) or [XML](/en-US/docs/Web/XML/Guides/XML_introduction) (including XML dialects such as [SVG](/en-US/docs/Web/SVG), [MathML](/en-US/docs/Web/MathML) or [XHTML](/en-US/docs/Glossary/XHTML)). CSS describes how elements should be rendered on screen, on paper, in speech, or on other media.
+CSS is among the core languages of the open web and is standardized across Web browsers according to [W3C specifications](https://www.w3.org/Style/CSS/#specs). Previously, the development of various parts of CSS specification was done synchronously, which allowed the versioning of the latest recommendations. You might have heard about CSS1, CSS2.1, or even CSS3. There will never be a CSS3 or a CSS4; rather, everything is now just "CSS" with individual CSS modules having version numbers.
+After CSS 2.1, the scope of the specification increased significantly and the progress on different CSS modules started to differ so much, that it became more effective to [develop and release recommendations separately per module](https://www.w3.org/Style/CSS/current-work). Instead of versioning the CSS specification, W3C now periodically takes a snapshot of [the latest stable state of the CSS specification](https://www.w3.org/TR/css/) and individual modules progress. CSS modules now have version numbers, or levels, such as [CSS Color Module Level 5](https://drafts.csswg.org/css-color-5/).
+[Your first website: Styling the content](/en-US/docs/Learn_web_development/Getting_started/Your_first_website/Styling_the_content)-
+This article provides a brief tour of what CSS is and how to use it, aimed at people who are completely new to web development.
+[CSS styling basics](/en-US/docs/Learn_web_development/Core/Styling_basics)-
+Our
+[Learn web development](/en-US/docs/Learn_web_development)section's CSS basics module teaches CSS fundamentals from the ground up. [CSS text styling](/en-US/docs/Learn_web_development/Core/Text_styling)-
+Here we look at fundamentals including setting font, boldness, italics, line and letter spacing, drop shadows, and other text features. We round off the module by looking at applying custom fonts to your page, and styling lists and links.
+[CSS layout](/en-US/docs/Learn_web_development/Core/CSS_layout)-
+Now it's time to look at how to correctly lay out your boxes in relation to one another, and the browser viewport. This module looks at floats, positioning, other modern layout tools, and building responsive designs that will adapt to different devices, screen sizes, and resolutions.
+The [CSS reference](/en-US/docs/Web/CSS/Reference) is an exhaustive reference for seasoned Web developers, describing every property and concept of CSS, including:
+- The
+[syntax and forms of the language](/en-US/docs/Web/CSS/CSS_syntax/Syntax) [Specificity](/en-US/docs/Web/CSS/CSS_cascade/Specificity),[inheritance](/en-US/docs/Web/CSS/CSS_cascade/Inheritance), and[the cascade](/en-US/docs/Web/CSS/CSS_cascade/Cascade)[CSS selectors](/en-US/docs/Web/CSS/CSS_selectors), including[pseudo-elements](/en-US/docs/Web/CSS/CSS_pseudo-elements),[nesting](/en-US/docs/Web/CSS/CSS_nesting),[scoping](/en-US/docs/Web/CSS/CSS_scoping)and[shadow parts](/en-US/docs/Web/CSS/CSS_shadow_parts)[CSS at-rules](/en-US/docs/Web/CSS/CSS_syntax/At-rule), including[media](/en-US/docs/Web/CSS/CSS_media_queries)and[container](/en-US/docs/Web/CSS/CSS_containment)queries[CSS values and units](/en-US/docs/Web/CSS/CSS_Values_and_Units)module, including[numeric data types](/en-US/docs/Web/CSS/CSS_Values_and_Units/Numeric_data_types),[textual data types](/en-US/docs/Web/CSS/CSS_Values_and_Units/Textual_data_types)and[functional notations](/en-US/docs/Web/CSS/CSS_Values_and_Units/CSS_Value_Functions)[Box model](/en-US/docs/Web/CSS/CSS_box_model/Introduction_to_the_CSS_box_model)and[margin collapse](/en-US/docs/Web/CSS/CSS_box_model/Mastering_margin_collapsing)- The
+[containing block](/en-US/docs/Web/CSS/CSS_display/Containing_block) [Stacking](/en-US/docs/Web/CSS/CSS_positioned_layout/Stacking_context)and[block-formatting](/en-US/docs/Web/CSS/CSS_display/Block_formatting_context)contexts[Initial](/en-US/docs/Web/CSS/CSS_cascade/Value_processing#initial_value),[computed](/en-US/docs/Web/CSS/CSS_cascade/Value_processing#computed_value),[used](/en-US/docs/Web/CSS/CSS_cascade/Value_processing#used_value), and[actual](/en-US/docs/Web/CSS/CSS_cascade/Value_processing#actual_value)values[CSS shorthand properties](/en-US/docs/Web/CSS/CSS_cascade/Shorthand_properties)[CSS flexible box](/en-US/docs/Web/CSS/CSS_flexible_box_layout),[multi-column](/en-US/docs/Web/CSS/CSS_multicol_layout)and[grid](/en-US/docs/Web/CSS/CSS_grid_layout)layout[Animation](/en-US/docs/Web/CSS/CSS_animations),[transitions](/en-US/docs/Web/CSS/CSS_transitions), and[transforms](/en-US/docs/Web/CSS/CSS_transforms)
+The [CSS layout cookbook](/en-US/docs/Web/CSS/Layout_cookbook) aims to bring together recipes for common layout patterns, things you might need to implement in your sites. In addition to providing code you can use as a starting point in your projects, these recipes highlight the different ways layout specifications can be used and the choices you can make as a developer.
+- You can use the
+[W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)to check if your CSS is valid. This is an invaluable debugging tool. [Firefox Developer Tools](https://firefox-source-docs.mozilla.org/devtools-user/index.html)lets you view and edit a page's live CSS via the[Inspector](https://firefox-source-docs.mozilla.org/devtools-user/page_inspector/index.html)and[Style Editor](https://firefox-source-docs.mozilla.org/devtools-user/style_editor/index.html)tools.- The
+[Web Developer extension](https://addons.mozilla.org/en-US/firefox/addon/web-developer/)for Firefox lets you track and edit live CSS on watched sites.
+
+--------------------------------------------------------------------------------
+
+Title: Types of CSS (Cascading Style Sheet) | GeeksforGeeks
+Domain: www.geeksforgeeks.org
+URL: https://www.geeksforgeeks.org/types-of-css-cascading-style-sheet/
+Content:
+CSS Background
+The CSS background is the area behind an element's content, which can be a color, image, or both. The background property lets you control these aspects, including color, image, position, and repetition. You can try different types of background here- iframe { width: 100%; height:410px;} @media (min
+
+--------------------------------------------------------------------------------
+
+Title: Introducing the CSS Cascade - CSS: Cascading Style Sheets | MDN
+Domain: developer.mozilla.org
+URL: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_cascade/Cascade
+Content:
+The cascade is an algorithm that defines how user agents combine property values originating from different sources. The cascade defines the origin and layer that takes precedence when declarations in more than one [origin](#origin_types), [cascade layer](/en-US/docs/Web/CSS/@layer), or [ @scope](/en-US/docs/Web/CSS/@scope) block set a value for a property on an element.
+The cascade lies at the core of CSS, as emphasized by the name: Cascading Style Sheets. When a [selector](/en-US/docs/Web/CSS/CSS_selectors) matches an element, the property value from the origin with the highest precedence gets applied, even if the selector from a lower precedence origin or layer has greater [specificity](/en-US/docs/Web/CSS/CSS_cascade/Specificity).
+This article explains what the cascade is and the order in which [CSS](/en-US/docs/Glossary/CSS) [declarations](/en-US/docs/Web/API/CSSStyleDeclaration) cascade, covering cascade layers and origin type. Understanding origin precedence is key to understanding the cascade.
+The CSS cascade algorithm's job is to select CSS declarations in order to determine the correct values for CSS properties. CSS declarations come from different origin types: [User-agent stylesheets](#user-agent_stylesheets), [Author stylesheets](#author_stylesheets), and [User stylesheets](#user_stylesheets).
+Though stylesheets come from these different origins and can be within different [layers](/en-US/docs/Web/CSS/@layer) in each of these origins, they overlap in terms of their default scope; to make this work, the cascade algorithm defines how they interact. Before addressing the interactions, we'll define some key terms in the next few sections.
+User-agents, or browsers, have basic stylesheets that give default styles to any document. These stylesheets are named user-agent stylesheets. Most browsers use actual stylesheets for this purpose, while others simulate them in code. The end result is the same.
+Some browsers let users modify the user-agent stylesheet, but this is rare and not something that can be controlled.
+Although some constraints on user-agent stylesheets are set by the HTML specification, browsers have a lot of latitude: that means some differences exist between browsers. To simplify the development process, Web developers may use a CSS reset stylesheet, such as [normalize.css](https://github.com/necolas/normalize.css), which sets common properties values to a known state for all browsers before beginning to make alterations to suit their specific needs.
+Unless the user-agent stylesheet includes an [ !important](/en-US/docs/Web/CSS/CSS_cascade/Specificity#the_!important_exception) next to a property, making it "important", styles declared by author styles, including a reset stylesheet, take precedence over the user-agent styles, regardless of the specificity of the associated selector.
+Author stylesheets are the most common type of stylesheet; these are the styles written by web developers. These styles can reset user-agent styles, as noted above, and define the styles for the design of a given web page or application. The author, or web developer, defines the styles for the document using one or more linked or imported stylesheets, [ <style>](/en-US/docs/Web/HTML/Element/style) blocks, and inline styles defined with the
+[attribute. These author styles define the look and feel of the website â its theme.](/en-US/docs/Web/HTML/Global_attributes/style)
+style
+In most browsers, the user (or reader) of the website can choose to override styles using a custom user stylesheet designed to tailor the experience to the user's wishes. Depending on the user agent, [user styles can be configured](https://www.thoughtco.com/user-style-sheet-3469931) directly or added via browser extensions.
+The cascade order is based on origin type. The cascade within each origin type is based on the declaration order of [cascade layers](/en-US/docs/Web/CSS/@layer) within that type. For all origins - user-agent, author, or user - styles can be declared within or outside of named or anonymous layers. When declared using [ layer, layer()](/en-US/docs/Web/CSS/@import) or
+[, styles are placed into the specified named layer, or into an anonymous layer if no name is provided. Styles declared outside of a layer are treated as being part of an anonymous last declared layer.](/en-US/docs/Web/CSS/@layer)
+@layer
+Let's take a look at cascading origin type before diving into cascade layers within each origin type.
+The cascading algorithm determines how to find the value to apply for each property for each document element. The following steps apply to the cascading algorithm:
+-
+Relevance: It first filters all the rules from the different sources to keep only the rules that apply to a given element. That means rules whose selector matches the given element and which are part of an appropriate
+media
+at-rule. -
+Origin and importance: Then it sorts these rules according to their importance, that is, whether or not they are followed by
+!important
+, and by their origin. Ignoring layers for the moment, the cascade order is as follows:Precedence Order (low to high) Origin Importance 1 user-agent (browser) normal 2 user normal 3 author (developer) normal 4 CSS keyframe animations 5 author (developer) !important
+6 user !important
+7 user-agent (browser) !important
+8 CSS transitions -
+Specificity: In case of equality with an origin, the
+[specificity](/en-US/docs/Web/CSS/CSS_cascade/Specificity)of a rule is considered to choose one value or another. The specificity of the selectors are compared, and the declaration with the highest specificity wins. -
+Scoping proximity: When two selectors in the origin layer with precedence have the same specificity, the property value within scoped rules with the smallest number of hops up the DOM hierarchy to the scope root wins. See
+[How](/en-US/docs/Web/CSS/@scope#how_scope_conflicts_are_resolved)for more details and an example.@scope
+conflicts are resolved -
+Order of appearance: In the origin with precedence, if there are competing values for a property that are in style block matching selectors of equal specificity and scoping proximity, the last declaration in the style order is applied.
+The cascade is in ascending order, meaning:
+- Animations take precedence over normal values, whether declared in user, author, or user-agent styles.
+- Important values take precedence over animations, whether declared in user, author, or user-agent styles.
+- Transitions take precedence over important values.
+Note: Transitions and animations
+Property values set by animation [ @keyframes](/en-US/docs/Web/CSS/@keyframes) are more important than all normal styles (those with no
+[set).](/en-US/docs/Web/CSS/CSS_cascade/Specificity#the_!important_exception)
+!important
+Property values being set in a [ transition](/en-US/docs/Web/CSS/transition) take precedence over all other values set, even those marked with
+!important
+.The cascade algorithm is applied before the specificity algorithm, meaning if :root p { color: red;}
+is declared in the user stylesheet (row 2) and a less specific p {color: blue;}
+is in the author stylesheet (row 3), the paragraphs will be blue.
+Before taking a deeper look at how cascade layers impact the cascade, let's look at an example involving multiple sources of CSS across the various origins, and work through the steps of the cascade algorithm:
+Here we have a user agent stylesheet, two author stylesheets, and a user stylesheet, with no inline styles within the HTML:
+User-agent CSS:
+li {
+margin-left: 10px;
+}
+Author CSS 1:
+li {
+margin-left: 0;
+} /* This is a reset */
+Author CSS 2:
+@media screen {
+li {
+margin-left: 3px;
+}
+}
+@media print {
+li {
+margin-left: 1px;
+}
+}
+@layer namedLayer {
+li {
+margin-left: 5px;
+}
+}
+User CSS:
+.specific {
+margin-left: 1em;
+}
+HTML:
+<ul>
+<li class="specific">1<sup>st</sup></li>
+<li>2<sup>nd</sup></li>
+</ul>
+In this case, declarations inside li
+and .specific
+rules should apply.
+Once again, there are five steps in the cascade algorithm, in order:
+- Relevance
+- Origin and importance
+- Specificity
+- Scoping proximity
+- Order of appearance
+The 1px
+is for print media. Due to lack of relevance based on its media type, it is removed from consideration.
+No declaration is marked as !important
+, so the precedence order is author stylesheets over user stylesheets over user-agent stylesheet. Based on origin and importance, the 1em
+from the user stylesheet and the 10px
+from the user-agent stylesheet are removed from consideration.
+Note that even though the user style on .specific
+of 1em
+has a higher specificity, it's a normal declaration in a user stylesheet. As such, it has a lower precedence than any author styles, and gets removed by the origin and importance step of the algorithm before specificity even comes into play.
+There are three declarations in author stylesheets:
+li {
+margin-left: 0;
+} /* from author css 1 */
+@media screen {
+li {
+margin-left: 3px;
+}
+}
+@layer namedLayer {
+li {
+margin-left: 5px;
+}
+}
+The last one, the 5px
+is part of a cascade layer. Normal declarations in layers have lower precedence than normal styles not in a layer within the same origin type. This is also removed by step 2 of the algorithm, origin and importance.
+This leaves the 0
+and the 3px
+, which both have the same selector, hence the same specificity. Neither of them are inside a @scope
+block, so scoping proximity does not come into play in this example either.
+We then look at order of appearance. The second one, the last of the two unlayered author styles, wins.
+margin-left: 3px;
+Note: The declaration defined in the user CSS, while it may have greater specificity, is not chosen as the cascade algorithm's origin and importance is applied before the specificity algorithm. The declaration defined in a cascade layer, though it may come later in the code, will not take precedence either as normal styles in cascade layers have less precedence than normal unlayered styles. Order of appearance only matters when both origin, importance, and specificity are equal.
+The [table in Cascading order](#cascading_order) provided a precedence order overview. The table summarized the user-agent, user, and author origin type styles in two lines each with "origin type - normal" and "origin type - !important". The precedence within each origin type is more nuanced. Styles can be contained within layers within their origin type, and, with author styles, there is also the issue of where inline styles land in the cascade order.
+The order in which layers are declared is important in determining precedence. Normal styles in a layer take precedence over styles declared in prior layers; with normal styles declared outside of any layer taking precedence over normal layered styles regardless of specificity.
+In this example, the author used CSS's [ @import](/en-US/docs/Web/CSS/@import) rule to import five external stylesheets within a
+[information element.](/en-US/docs/Web/HTML/Element/style)
+<style>
+<style>
+@import unlayeredStyles.css;
+@import AStyles.css layer(A);
+@import moreUnlayeredStyles.css;
+@import BStyles.css layer(B);
+@import CStyles.css layer(C);
+p {
+color: red;
+padding: 1em !important;
+}
+</style>
+and then in the body of the document we have inline styles:
+<p style="line-height: 1.6em; text-decoration: overline !important;">Hello</p>
+In the CSS code block above, three cascade layers named "A", "B", and "C", were created, in that order. Three stylesheets were imported directly into layers and two were imported without creating or being assigned to a layer.
+The "All unlayered styles" in the list below (normal author style precedence - order 4) includes styles from these two stylesheets and the additional unlayered CSS style blocks. In addition, there are two inline styles, a normal line-height
+declaration and an important text-decoration
+declaration:
+| Precedence Order (low to high) | Author style | Importance |
+|---|---|---|
+| 1 | A - first layer | normal |
+| 2 | B - second layer | normal |
+| 3 | C - last layer | normal |
+| 4 | All unlayered styles | normal |
+| 5 | inline style |
+normal |
+| 6 | animations | |
+| 7 | All unlayered styles | !important |
+| 8 | C - last layer | !important |
+| 9 | B - second layer | !important |
+| 10 | A - first layer | !important |
+| 11 | inline style |
+!important |
+| 12 | transitions |
+In all origin types, normal styles contained in layers have the lowest precedence. In our example, the normal styles associated with the first declared layer (A) have lower precedence than normal styles in the second declared layer (B), which have lower precedence than normal styles in the third declared layer (C). These layered styles have lower precedence than all normal unlayered styles, which includes normal styles from unlayeredStyles.css
+, moreUnlayeredStyles.css
+, and the color
+of p
+in the <style>
+itself.
+If any layered styles in A, B, or C have selectors with higher specificity matching an element, similar to :root body p { color: black; }
+, it doesn't matter. Those declarations are removed from consideration because of origin; normal layered styles have less precedence than normal unlayered styles. If, however, the more specific selector :root body p { color: black; }
+was found in unlayeredStyles.css
+, as both origin and importance have the same precedence, specificity would mean the more specific, black declaration would win.
+The layer order of precedence is inverted for styles declared as !important
+. Important declarations found in a layer take precedence over important declarations found outside of a layer. Important declarations found in the first layer (A) take precedence over important declarations found in layer B, which take precedence over important declarations found in layer C, which take precedence over important declarations found outside of a layer.
+Only relevant to author styles are inline styles, declared with the style
+attribute. Normal inline styles take precedence over any other normal author styles, no matter the specificity of the selector. If line-height: 2;
+were declared in a :root body p
+selector block in any of the five imported stylesheets, the line height would still be 1.6
+. Normal inline styles do not take precedence over animated or transitioned properties.
+Important inline styles take precedence over all other author styles, regardless of whether they are important, inline, or layered. Important inline styles also take precedence over animated properties, but not transitioned properties. Three things can override an important inline style:
+- An important user style.
+- An important user agent style.
+- A transitioned property.
+The origin type precedence order is inverted for important styles. Important styles declared outside of any cascade layer have lower precedence than those declared as part of a layer. Important styles that come in early layers take precedence over important styles declared in subsequent cascade layers.
+Take for example the following CSS:
+p {
+color: red;
+}
+@layer B {
+:root p {
+color: blue;
+}
+}
+Even though the red is declared first and has a less specific selector, because unlayered CSS takes precedence over layered CSS, the paragraph will be red. Had we included an inline style on the paragraph setting it to a different color, such as <p style="color: black">
+, the paragraph would be black.
+When we add !important
+to this bit of CSS, the precedence order is reversed with the stylesheet:
+p {
+color: red !important;
+}
+@layer B {
+:root p {
+color: blue !important;
+}
+}
+Now the paragraph will be blue. The !important
+in the earliest declared layer takes precedence over subsequent layers and unlayered important declarations. If the inline style contained !important
+, such as <p style="color: black !important">
+, again the paragraph would be black. Inline importance does take precedence over all other author declared !important
+declarations, no matter the specificity.
+Note:
+The !important
+flag reverses the precedence of cascade layers. For this reason, try not to use !important
+to override external styles. Instead, use [ @import](/en-US/docs/Web/CSS/@import) together with the
+layer
+keyword or layer()
+function to import external stylesheets (from frameworks, widget stylesheets, libraries, etc.) into layers. Importing stylesheets into a layer as the first declaration in your CSS demotes their precedence, and author-defined layers, defined later in your CSS, will have higher precedence. The !important
+flag should only be used sparingly, if ever, to guard required styles against later overrides, in the first declared layer.Styles that are transitioning take precedence over all important styles, no matter who or how they are declared.
+Now that we have a better understanding of origin type and cascade layer precedence, we realize the table in [Cascading order](#cascading_order) could have more accurately been represented by the following table:
+| Precedence Order (low to high) | Style Origin | Importance |
+|---|---|---|
+| 1 | user-agent - first declared layer | normal |
+| user-agent - last declared layer | ||
+| user-agent - unlayered styles | ||
+| 2 | user - first declared layer | normal |
+| user - last declared layer | ||
+| user - unlayered styles | ||
+| 3 | author - first declared layer | normal |
+| author - last declared layer | ||
+| author - unlayered styles | ||
+inline style | ||
+| 4 | animations | |
+| 5 | author - unlayered styles | !important |
+| author - last declared layer | ||
+| author - first declared layer | ||
+inline style | ||
+| 6 | user - unlayered styles | !important |
+| user - last declared layer | ||
+| user - first declared layer | ||
+| 7 | user-agent - unlayered styles | !important |
+| user-agent - last declared layer | ||
+| user-agent - first declared layer | ||
+| 8 | transitions |
+Only CSS property/value pair declarations participate in the cascade. CSS at-rule descriptors don't participate in the cascade and HTML presentational attributes are not part of the cascade.
+CSS [at-rules](/en-US/docs/Web/CSS/CSS_syntax/At-rule) containing entities other than declarations, such as a [ @font-face](/en-US/docs/Web/CSS/@font-face) rule containing descriptors, don't participate in the cascade.
+For the most part, the properties and descriptors defined in at-rules don't participate in the cascade. Only at-rules as a whole participate in the cascade. For example, within a @font-face
+rule, font names are identified by [ font-family](/en-US/docs/Web/CSS/@font-face/font-family) descriptors. If several
+@font-face
+rules with the same descriptor are defined, only the most appropriate @font-face
+, as a whole, is considered. If more than one are identically appropriate, the entire @font-face
+declarations are compared using steps 1, 2, and 4 of the algorithm (there is no specificity when it comes to at-rules).While the declarations contained in most at-rules â such as those in [ @media](/en-US/docs/Web/CSS/@media),
+[, or](/en-US/docs/Web/CSS/@document)
+@document
+[â participate in the cascade, the at-rule may make an entire selector not relevant, as we saw with the print style in the](/en-US/docs/Web/CSS/@supports)
+@supports
+[basic example](#basic_example).
+Declarations in [ @keyframes](/en-US/docs/Web/CSS/@keyframes) don't participate in the cascade. As with
+@font-face
+, only the @keyframes
+as a whole is selected via the cascade algorithm. The [precedence order of animation is described below](#css_animations_and_the_cascade).
+When it comes to [ @import](/en-US/docs/Web/CSS/@import), the
+@import
+doesn't participate itself in the cascade, but all of the imported styles do participate. If the @import
+defines a [named or anonymous layer](/en-US/docs/Web/CSS/@layer), the contents of the imported stylesheet are placed into the specified layer. All other CSS imported with
+@import
+is treated as the last declared layer. This was discussed above.Finally, [ @charset](/en-US/docs/Web/CSS/@charset) obeys specific algorithms and isn't affected by the cascade algorithm.
+Presentational attributes are attributes in the source document that can affect styling. For example, when included, the deprecated align
+attribute sets the alignment on several HTML elements and the fill
+attribute defines the color used to paint SVG shapes and text and defines the final state for SVG animations. While they are author styles, presentational attributes do not participate in the cascade.
+If the HTML presentation attribute is supported by the user agent, valid presentational attributes included in HTML and SVG, such as the [ align](/en-US/docs/Web/HTML/Element/img#align) or
+[attributes, are translated to the corresponding CSS rules (all SVG presentation attributes are supported as CSS properties) and inserted in the author stylesheet prior to any other styles with a specificity equal to](/en-US/docs/Web/SVG/Reference/Attribute/fill)
+fill
+0
+.Presentational attributes cannot be declared !important
+.
+[CSS animations](/en-US/docs/Web/CSS/CSS_animations), using [ @keyframes](/en-US/docs/Web/CSS/@keyframes) at-rules, define animations between states.
+@keyframes
+don't cascade, meaning that at any given time CSS takes values from only one single set of @keyframes
+and never mixes multiple ones. If multiple sets of @keyframes
+are defined with the same animation name, the last defined set in the origin and layer with the greatest precedence is used. Other @keyframes
+are ignored, even if they animate different properties.p {
+animation: infinite 5s alternate repeatedName;
+}
+@keyframes repeatedName {
+from {
+font-size: 1rem;
+}
+to {
+font-size: 3rem;
+}
+}
+@layer A {
+@keyframes repeatedName {
+from {
+background-color: yellow;
+}
+to {
+background-color: orange;
+}
+}
+}
+@layer B {
+@keyframes repeatedName {
+from {
+color: white;
+}
+to {
+color: black;
+}
+}
+}
+In this example, there are three separate animation declaration named repeatedName
+. When animation: infinite 5s alternate repeatedName
+is applied to the paragraph, only one animation is applied: the keyframe animation defined in the unlayered CSS takes precedence over the layered keyframe animation declarations based on origin and layer precedence order. In this example, only the element's font size will be animated.
+After your content has finished altering styles, it may find itself in a situation where it needs to restore them to a known state. This may happen in cases of animations, theme changes, and so forth. The CSS property [ all](/en-US/docs/Web/CSS/all) lets you quickly set (almost) everything in CSS back to a known state.
+all
+lets you opt to immediately restore all properties to any of their initial (default) state, the state inherited from the previous level of the cascade, a specific origin (the user-agent stylesheet, the author stylesheet, or the user stylesheet), or even to clear the values of the properties entirely.
+| Specification |
+|---|
+|
+
+--------------------------------------------------------------------------------
+
+Title: What Is Cascading in CSS? | GeeksforGeeks
+Domain: www.geeksforgeeks.org
+URL: https://www.geeksforgeeks.org/what-does-the-cascading-portion-of-css-means/
+Content:
+What Is Cascading in CSS?
+Last Updated :
+14 Jan, 2025
+Cascading in CSS refers to the process by which the browser determines which style rules to apply when multiple rules target the same element. The term “cascading” highlights how CSS applies a hierarchy of rules, where certain rules take precedence over others based on defined principles.
+For Example,
+HTML
+<!--Driver Code Starts{-->
+<html>
+<head>
+<!--Driver Code Ends }-->
+<style>
+/* Internal Style */
+.header {
+color: blue;
+}
+</style>
+<!--Driver Code Starts{-->
+</head>
+<body>
+<h1 class="header" style="color: red;">Hello, World!</h1>
+</body>
+</html>
+<!--Driver Code Ends }-->
+Output:
+![cascading-example](https://media.geeksforgeeks.org/wp-content/uploads/20241127143426973045/cascading-example.png)
+Cascading in CSS
+In this example, the inline style color: red; will override the internal style color: blue; because inline styles take priority in the CSS cascade.
+How Cascading Works in CSS?
+[CSS ](https://www.geeksforgeeks.org/css-tutorial/)rules can come from multiple sources: user-defined styles, browser default styles, and custom styles from a website. The cascading process determines which of these styles is applied when they conflict.
+Here’s how it works?
+- Specificity: CSS rules with more specific selectors take priority over less specific ones. For example, an ID selector (#header) is more specific than a class selector (.header), so it will override it if both are applied to the same element.
+- Importance: Styles marked with !important take precedence over all other styles, even if they are less specific. However, overusing !important can lead to maintenance problems and should be avoided unless absolutely necessary.
+- Source Order: When two rules have the same specificity and importance, the order in which the rules are defined matters. The later rule (appearing further down the CSS file or in the later <style> block) will override the earlier one.
+Cascading Order Breakdown
+Here’s a simplified breakdown of the cascading order from highest priority to lowest priority:
+- !important: Highest priority, regardless of source.
+- Inline styles: Next in priority, unless overridden by !important.
+- Internal CSS: Styles within a <style> tag which apply only to that document.
+- External CSS: Styles from external CSS files linked to the HTML document, which apply globally across multiple pages.
+- Browser/User styles: Defaults or user-defined preferences.
+!important > Inline CSS > Internal CSS > External CSS > Brower/User Styles
+HTML
+<!--Driver Code Starts{-->
+<html>
+<head>
+<!--Driver Code Ends }-->
+<link rel="stylesheet" href="index.css">
+<style>
+h1 {
+background-color: red;
+}
+</style>
+<!--Driver Code Starts{-->
+</head>
+<body>
+<h1 style="background-color: blue;">Cascading in CSS</h1>
+</body>
+</html>
+<!--Driver Code Ends }-->
+CSS
+h1{
+background-color: brown !important
+}
+Output
+![cascading-in-css](https://media.geeksforgeeks.org/wp-content/uploads/20241230122234527381/cascading-in-css.png)
+What Is Cascading in CSS- Cascading Order
+In this example, we can see even after[ inline CSS](https://www.geeksforgeeks.org/inline-css/) and[ internal CSS](https://www.geeksforgeeks.org/internal-css/), the [external CSS](https://www.geeksforgeeks.org/how-to-link-external-css-to-html/) having[ !important](https://www.geeksforgeeks.org/how-to-apply-important-in-css/) overrides all the styles.
+CSS Specificity
+CSS specificity plays a huge role in the cascade. It is a measure of how specific a selector is, and it helps determine which rule applies when multiple rules match the same element.
+CSS specificity is calculated using a point system based on the types of selectors used in a rule:
+- Inline styles: 1000 points.
+- ID selector: 100 points
+- Classes, attributes, and pseudo-classes: 10 points.
+- Tags and pseudo-elements: 1 point.
+/* Less specific */
+div {
+color: blue;
+}
+/* More specific */
+#header {
+color: green;
+}
+/* Most specific */
+#header .title {
+color: red;
+}
+In this case, if an element matches all three selectors, the style color: red; will be applied because it has the highest specificity.
+Rule Overriding
+Rule overriding in CSS happens when more than one style is applied to the same element, and one style wins over the other. The most specific style or the one that comes last in the code usually gets applied.
+HTML
+<!--Driver Code Starts{-->
+<html>
+<head>
+<!--Driver Code Ends }-->
+<style>
+p {
+color: green;
+/* Least specific - applies to all <p> elements */
+}
+.special {
+color: blue;
+/* More specific - applies to elements with class "special" */
+}
+#unique {
+color: red;
+/* Most specific - applies to element with ID "unique" */
+}
+</style>
+<!--Driver Code Starts{-->
+</head>
+<body>
+<p>This text is green.</p>
+<p class="special">This text is blue.</p>
+<p id="unique" class="special">This text is red (ID overrides class).</p>
+</body>
+</html>
+<!--Driver Code Ends }-->
+Output:
+![Screenshot-2024-11-26-115054](https://media.geeksforgeeks.org/wp-content/uploads/20241126115119121311/Screenshot-2024-11-26-115054.png)
+id>class>element
+- The first
+<p>
+is styled by the tag selector, so it’s green. - The second
+<p>
+has a class special
+, which overrides the tag selector, making it blue. - The third
+<p>
+has both a class special
+and an ID unique
+. The ID rule is more specific, so it’s red.
+Similar Reads
+What is @apply in CSS ?
+In this article, we will see the @apply rule property in CSS. This rule is used to implement a bunch of CSS properties which is already been declared in a variable like a method in JAVA. In simple words, we will make a set of CSS properties and store them into a variable for later use and we can use
+2 min read
+What is Float Containment in CSS ?
+In this article, we will see what is float containment in CSS. The CSS Float Containment is used to improve the performance of web pages by isolating the subpart of the page from the rest of the page. Once the browsers know that a certain part of code is independent then its rendering can be optimiz
+3 min read
+What is First Child in CSS ?
+The :first-child CSS pseudo-class is used to select and style the first child element within its parent. It specifically applies to the first child element, and no matter the type of element, it only applies the styles if the element is the very first child of its parent. This is useful when you wan
+2 min read
+What is before and after in CSS?
+The ::before and ::after pseudo-elements in CSS are used to insert content before or after the HTML element. They allow us to add content or elements without modifying the actual HTML structure. Those pseudo-elements are often used for styling purposes, such as adding icons, symbols, or any text tha
+2 min read
+What is a CSS Reset ?
+A CSS reset is a set of CSS rules that aim to override the default styles provided by web browsers. The purpose of a CSS reset is to establish a consistent design across different browsers by removing any default styling that may vary between them. This creates a certain amount of headaches for deve
+4 min read
+What is CSS?
+CSS, which stands for Cascading Style Sheets is a language in web development that enhances the presentation of HTML elements. By applying styles like color, layout, and spacing, CSS makes web pages visually appealing and responsive to various screen sizes. CSS allows you to control the look and fee
+5 min read
+Types of CSS (Cascading Style Sheet)
+CSS is used to style and layout web pages, controlling the appearance of HTML elements. It allows developers to create visually appealing designs and ensure a consistent look across a website. Types of CSSCSS can be implemented in three different ways: Inline CSSInternal or Embedded CSSExternal CSS1
+3 min read
+What is grouping in HTML ?
+Grouping plays a vital role in our web page because it helps the developer to target specific classes and id which makes it easier to position, style, or manipulate the web page with the help of HTML, CSS, or JavaScript. Grouping can be performed with the help of various tags such as <div>,
+2 min read
+What is contextual selector in CSS ?
+In this article, we will learn about the contextual selector in CSS & understand the declaration syntax with the help of code examples.A contextual selector is defined as a selector which considers the context where the style is to be applied. In simple words, the specified style is applied to a
+3 min read
+How to Add Shadow in CSS?
+Shadows in CSS can be used to create depth and visual interest by adding the effect that simulates the shadow of an element. It can be applied to both the text and block elements to enhance the design of the web pages. CSS can provide several properties to achieve different shadow effects, including
+5 min read
+
+--------------------------------------------------------------------------------
+
+Title: Cascading Style Sheets
+Domain: www.w3.org
+URL: https://www.w3.org/Style/CSS/Overview.en.html
+Content:
+Cascading Style Sheets (CSS) is a simple mechanism for adding style (e.g., fonts, colors, spacing) to Web documents.
+These pages contain information on how to [learn
+and use CSS](learning) and on available [software.](software) They
+also contain news from the [CSS working group.](members)
+For more news, see our syndicator [“The
+Future of Style.”](Planet/)
+Some of the specifications and drafts by the [CSS
+Working Group:](members)
+The [working group](members) regularly publishes reports
+on its [blog;](/blog/CSS/) here are the most recent:
+![[Photo: group photo in San Francisco]](csswg-2016.jpg)
+A part of the CSS WG in May 2016.
+The [
+<www-style@w3.org> mailing list](https://lists.w3.org/Archives/Public/www-style/) is the place for
+discussing the further development of CSS. (The [CSS
+working group](members) also uses that list for most discussions.)
+Everybody can [
+subscribe](mailto:www-style-request@w3.org?subject=subscribe) (or [
+unsubscribe,](mailto:www-style-request@w3.org?subject=unsubscribe) or see [
+instructions.](../../Mail/Request))
+If you work for a [W3C
+member organization,](../../Consortium/Member/List) you can also join the working group.
+Nearly all [browsers](software#browsers) nowadays
+support CSS and many [other applications](software#other)
+do, too. To write CSS, you don't need more than a text editor, but
+there are many [tools](software#editors) available that
+make it even easier.
+Of course, all software has bugs, even after several updates. And
+some programs are further ahead implementing the [latest CSS modules](current-work) than others. Various sites
+describe [bugs and work-arounds](software#support).
+For beginners, [Starting
+with HTML + CSS](../Examples/011/firstcss) teaches how to create a style sheet. For
+a quick introduction to CSS, try [chapter 2](../LieBos2e/enter/) of [Lie &
+Bos](learning#LieBos1999) or [Dave Raggett's
+intro to CSS](../../MarkUp/Guide/Style). Or see examples of [styling XML](../styling-XML) and [CSS tips &
+tricks](../Examples/007/).
+Another page also has some [books,](learning#books) [mailing lists](learning#fora) and similar fora, and links
+to [other directories.](learning#secondary)
+The history of CSS is described in [chapter 20](../LieBos2e/history/) of the book [ Cascading Style Sheets, designing
+for the Web,](http://www.informit.com/store/cascading-style-sheets-designing-for-the-web-9780321193124?rll=1) by Håkon Wium Lie and Bert Bos (2nd ed.,
+1999, Addison Wesley, ISBN 0-201-59625-3)
+
+--------------------------------------------------------------------------------
+
+Title: CSS Introduction
+Domain: www.w3schools.com
+URL: https://www.w3schools.com/Css/css_intro.asp
+Content:
+CSS describes how HTML elements are to be displayed on screen,
+paper, or in other media
+CSS saves a lot of work. It can control the layout of
+multiple web pages all at once
+External stylesheets are stored in CSS files
+CSS Demo - One HTML Page - Multiple Styles!
+Here we will show one HTML page displayed with four different stylesheets.
+Click on the "Stylesheet 1", "Stylesheet 2", "Stylesheet 3", "Stylesheet 4"
+links below to see the different styles:
+Why Use CSS?
+CSS is used to define styles for your web pages, including the design, layout
+and variations in display for different devices and screen sizes.
+HTML was NEVER intended to contain tags for formatting a web page!
+HTML was
+created to describe the content of a web page, like:
+<h1>This is a heading</h1>
+<p>This is a paragraph.</p>
+When tags like <font>, and color attributes were added to the HTML 3.2
+specification, it started a nightmare for web developers. Development of large
+websites, where fonts and color information were added to every single
+page, became a long and expensive process.
+To solve this problem, the World Wide Web Consortium (W3C) created CSS.
+CSS removed the style formatting from the HTML page!
+If you don't know what HTML is, we suggest that you read our HTML Tutorial.
+CSS Saves a Lot of Work!
+The style definitions are normally saved in external .css files.
+With an external stylesheet file, you can change the look of an entire website by changing just one file!
+
+--------------------------------------------------------------------------------
+
+Title: Syntax - CSS: Cascading Style Sheets | MDN
+Domain: developer.mozilla.org
+URL: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_syntax/Syntax
+Content:
+The basic goal of the Cascading Stylesheet ([CSS](/en-US/docs/Web/CSS)) language is to allow a browser engine to paint elements of the page with specific features, like colors, positioning, or decorations. The CSS syntax reflects this goal and its basic building blocks are:
+- The property which is an identifier, that is a human-readable name, that defines which feature is considered.
+- The value which describe how the feature must be handled by the engine. Each property has a set of valid values, defined by a formal grammar, as well as a semantic meaning, implemented by the browser engine.
+Setting CSS properties to specific values is the core function of the CSS language. A property and value pair is called a declaration, and any CSS engine calculates which declarations apply to every single element of a page in order to appropriately lay it out, and to style it.
+Both properties and values are case-insensitive by default in CSS. The pair is separated by a colon, :
+(U+003A COLON), and white spaces before, between, and after properties and values, but not necessarily inside, are ignored.
+![A css declaration is a property value pair, with a colon separating the two entities and a semi-colon closing the declaration.](/en-US/docs/Web/CSS/CSS_syntax/Syntax/css_syntax_-_declaration.png)
+There are [hundreds of different properties](/en-US/docs/Web/CSS/Reference) in CSS and a practically endless number of different values. Not all pairs of properties and values are allowed and each property defines what are the valid values. When a value is not valid for a given property, the declaration is deemed invalid and is wholly ignored by the CSS engine.
+Declarations are grouped in blocks, that is in a structure delimited by an opening brace, {
+(U+007B LEFT CURLY BRACKET), and a closing one, }
+(U+007D RIGHT CURLY BRACKET). Blocks sometimes can be nested, so opening and closing braces must be matched.
+![Two braces delimit the start and end of a CSS block, with css content or no content between the braces.](/en-US/docs/Web/CSS/CSS_syntax/Syntax/css_syntax_-_block.png)
+Such blocks are naturally called declaration blocks and declarations inside them are separated by a semicolon, ;
+(U+003B SEMICOLON). A declaration block may be empty, that is containing null declaration. White spaces around declarations are ignored. The last declaration of a block doesn't need to be terminated by a semicolon, though it is often considered good style to do it as it prevents forgetting to add it when extending the block with another declaration.
+A CSS declaration block is visualized in the diagram below.
+![Within a CSS block, encompassed in braces, semicolons separate declarations, with the final semicolon being optional but recommended as good practice.](/en-US/docs/Web/CSS/CSS_syntax/Syntax/declaration-block.png)
+If style sheets could only apply a declaration to each element of a Web page, they would be pretty useless. The real goal is to apply different declarations to different parts of the document.
+CSS allows this by associating conditions with declarations blocks. Each (valid) declaration block is preceded by one or more comma-separated [selectors](/en-US/docs/Web/CSS/CSS_selectors), which are conditions selecting some elements of the page. A [selector list](/en-US/docs/Web/CSS/Selector_list) and an associated declarations block, together, are called a ruleset, or often a rule.
+A CSS ruleset (or rule) is visualized in the diagram below.
+![A group of comma-separated selectors precedes the brace-delimited declaration block, which contains multiple declarations ending in semicolons.](/en-US/docs/Web/CSS/CSS_syntax/Syntax/ruleset.png)
+As an element of the page may be matched by several selectors, and therefore by several rules potentially containing a given property several times, with different values, the CSS standard defines which one has precedence over the other and must be applied: this is called the cascade algorithm (see [Handling conflicts](/en-US/docs/Learn_web_development/Core/Styling_basics/Handling_conflicts)).
+Note: It is important to note that even if a ruleset characterized by a group of selectors is a kind of shorthand replacing rulesets with a single selector each, this doesn't apply to the validity of the ruleset itself.
+This leads to an important consequence: if one single basic selector is invalid, like when using an unknown pseudo-element or pseudo-class, the whole selector is invalid and therefore the entire rule is ignored (as invalid too).
+Rulesets are the main building blocks of a style sheet, which often consists of only a big list of them. But there is other information that a Web author wants to convey in the style sheet, like the character set, other external style sheets to import, font face or list counter descriptions and many more. It will use other and specific kinds of statements to do that.
+A statement is a building block that begins with any non-space characters and ends at the first closing brace or semicolon (outside a string, non-escaped and not included into another {}, () or [] pair).
+![A Venn diagram of statements noting all rulesets are nested statements, while some at-rules are nested statements but most aren't. Anything that is not an at-rule or nested is invalid.](/en-US/docs/Web/CSS/CSS_syntax/Syntax/css_syntax_-_statements_venn_diag.png)
+There are two kinds of statements:
+- Rulesets (or rules) that, as seen, associate a collection of CSS declarations to a condition described by a
+[selector](/en-US/docs/Web/CSS/CSS_selectors). - At-rules that start with an at sign,
+@
+(U+0040 COMMERCIAL AT), followed by an identifier and then continuing up to the end of the statement, that is up to the next semicolon (;) outside of a block, or the end of the next block. Each type of[at-rules](/en-US/docs/Web/CSS/CSS_syntax/At-rule), defined by the identifier, may have its own internal syntax, and semantics of course. They are used to convey meta-data information (likeor@layer
+), conditional information (like@import
+or@media
+), or descriptive information (like@document
+).@font-face
+Any statement which isn't a ruleset or an at-rule is invalid and ignored.
+There is another group of statements â the nested statements. These are statements that can be used in a specific subset of at-rules â the conditional group rules. These statements only apply if a specific condition is matched: the @media
+at-rule content is applied only if the device on which the browser runs matches the expressed condition; the @document
+at-rule content is applied only if the current page matches some conditions, and so on. In CSS1 and CSS2.1, only rulesets could be used inside conditional group rules. That was very restrictive and this restriction was lifted in [CSS Conditionals Level 3](/en-US/docs/Web/CSS/CSS_conditional_rules). Now, though still experimental and not supported by every browser, conditional group rules can contain a wider range of content: rulesets but also some, but not all, at-rules.
+
+--------------------------------------------------------------------------------
+
+Title: The Art of Styling: A Comprehensive Guide to Cascading Style Sheets(CSS) - DEV Community
+Domain: dev.to
+URL: https://dev.to/bhabani_sankar/the-art-of-styling-a-comprehensive-guide-to-cascading-style-sheetscss-4380
+Content:
+What is CSS?
+- CSS stands for Cascading Style Sheets.
+- Cascading Style Sheets (CSS) is a stylesheet language used to describe the presentation (look and feel) of a web page written in HTML. It defines how HTML elements should be displayed on screen, paper, or in other media.
+- CSS saves a lot of work. It can control the layout of multiple web pages all at once.
+Cascading: The term "cascading" refers to how styles are applied to elements in a hierarchical manner. If multiple styles apply to the same element, the "cascading" nature determines which style takes precedence. It follows a set of rules based on specificity, importance, and source order.
+Styles :
+- Styles define a set of attributes that are used to make HTML more interactive and responsive.
+- Styles use an object model to format HTML elements and make them more interactive.
+- Object keeps all relative data and logic together.
+- Object enables features like a) Reusability b) Separation c) Extensibility d) Maintainability e) Testability etc..
+Sheets: CSS is written in separate files (stylesheets) that can be linked to HTML documents, allowing for better organization and maintainability.
+CSS Syntax
+-
+Object is a key and value collection enclosed in a block "{ }"..
+{
+Key : value;
+Key : value;
+}
+- Key refers to style attribute name.
+- There are various style attributes like color, width, height, margin, padding etc..
+Styles can be defined for HTML elements in 3 ways.
+a) Inline Styles
+b) Embedded Styles
+c) External Style Sheets
+Inline Styles:
+-
+Styles are defined for HTML elements individually by using a "style" attribute.
+<h1 style="color:red; font-family:Arial; border:1px solid black">
+Inline styles are faster in rendering.
+You can't reuse the styles.
+Embedded Styles:
+- Styles are defined for HTML elements using a
+<style>
+container. - You can embed style container in page.
+- It enables easy reusability and extensibility.
+- However it is slow in rendering when compared to inline.
+Syntax:
+<style>
+selector
+{
+attribute: value;
+}
+</style>
+External Style Sheets
+- You can configure styles in a separate style sheet.
+- Style sheets have extension ".css"
+- You can link style sheet to any page.
+- You can access styles across pages.
+CSS Selectors
+- Selector is required for styles that are defined in embedded or external file.
+- A selector selects HTML element in page in order to apply given set of styles.
+- Selectors are of various types
+- Primary Selectors
+- Rational or Relational Selectors
+- Structural Selectors
+- Attribute Selectors
+- Dynamic Pseudo Classes
+- Root Selector
+- Language Selector
+- Universal Selector etc..
+Primary Selectors:
+- Type Selector
+- ID Selector
+- Class Selector
+Type Selector:
+- It refers to element name.
+- It applies styles to all occurrences of element in page.
+- You can't ignore for any specific occurrence.
+Syntax:
+h1, p, div, span, li
+{
+}
+ID Selector:
+- Every element can use an ID reference.
+- You can configure styles using ID.
+- ID is accessible with "#".
+- You can choose occurrence where you want to apply the styles.
+Syntax:
+#text-style {
+}
+<h1 id="text-style">
+- Every HTML element can have only one ID reference.
+- You can't apply multiple set of styles to one element using ID.
+Class Selector:
+- It is defined using class attribute.
+- It is accessible using ".className".
+- You can choose specific occurrence.
+- It allows multiple inheritance.
+- You can configure multiple classes for one element.
+Syntax:
+.className{
+}
+<div class="className1 className2 className3..">
+Rational or Relational Selectors:
+-These selector default with parent and child elements as well as with elements that have relation.
+- Relation like adjacent, below, above, before, after, first, last etc..
+Descendent Selector --
+-Targets all tags under specified parent. It includes any level hierarchy.
+-It defines the parent element and the child element by using
+space.
+Syntax:
+parentElement childElement {
+}
+Child Selector --
+-It applies effects only to the direct child of parent element.
+Syntax:
+Parent > child {
+}
+Adjacent --
+- It defines effects to an element which is specified immediately after current element.
+- It is not parent and child, it is one below another.
+- It will apply only to the first adjacent element.
+Syntax:
+FirstElement + adjacentElement { }
+General --
+- It defines effects to all elements which are specified after the
+current element.
+Syntax:
+FirstElement ~ AdjacentElements { }
+Attribute Selectors:
+- Several elements in HTML are presented by using attribute of tag.
+<input type="button"> <input type="radio">
+- “type” is attribute.
+- We have to apply effects based on attribute and value.
+Syntax:
+tagName[“attribute”] { }
+tagName[“attribute=value”] { }
+- Attribute selectors can be defined with conditions.
+- Effects are applied only to attribute that match the given condition.
+[attribute="val"]
+-- Equal specifies that it should be exact match.
+[attribute^="val"]
+-- It refers the value starting with specified term.
+[attribute$="val"]
+-- It specifies that the value ending with given term.
+[attribute*="val"]
+-- It matches the term at any location.
+[attribute|="val"]
+-- Name starts with specified term and separated with "-".
+[attribute~="val"]
+-- Name start with specified term and contain blank space.
+Dynamic Pseudo-Classes:
+- Dynamic indicates that the effect can change according to state and situation.
+- Pseudo indicates that it is not referring to exactly the element which is having the same name as selector name.
+- The selector name and the element if effects may differ.
+Syntax:
+link - not <link> element, it refers to <a> class/Id/type: pseudoClass { }
+:link -- Specifies effect for Hyperlink.
+:visited -- It defines effects for visited links.
+:hover -- It defines effects when mouse pointer is over element.
+:active -- It defines effects when link is in active state.
+:focus -- It defines effects when element get focus.
+Syntax:
+Element:Link { }
+#heading:hover {}
+.txtName:focus { }
+Target pseudo class --
+:target :-
+- It defines effects to any element when it becomes target of a link.
+- You can implement in intra document navigation.
+The Element state pseudo-classes --
+- Element state indicates the state of element like enabled, disables, readonly,checked. :enabled -- It defines effects when element is enabled. :disabled -- It defines effects when element is disabled. :read-only -- It defines effects when element is set to read-only. :checked -- It defines effects when element is checked.
+The Element validation state pseudo classes:
+- HTML 5 provides pre-defined form validations like require, email, url, pattern etc.
+- CSS can use HTML 5 validations to verify the state valid or not and can apply effects.
+:valid -- It defines effects for element if is value is valid against the
+validation defined. Validation can be verified by using:
+- Minlength
+- Maxlength
+- Required
+- Pattern
+- URL etc.
+:invalid -- It defines effect for element when it is invalid.
+:in-range -- It defines effects for element when input value is within the specified range.
+:out-of-range -- It defines effects for element when input value is out of given range.
+-Range is verified with “min and max” values defined for input
+element.
+:required -- It defines effects to element when it verified with required
+error.
+-It is not validating required, It is just verifying whether the required defined or not.
+:optional --If it is not defined with required validation then it is treated as optional.
+Structural Selectors:
+-You can target your effects based on the position of element in parent and child hierarchy.
+:first-child -- It defines effects only for first child element.
+:last-child -- It defines effects only for last child element.
+:nth-child(LevelNumber) -- It defines effects only to specific child element that occurs at given level.
+-Level number starts with 1.
+-Index number starts with 0.
+-You can also define the pre-set values like ‘even & odd’ to apply effects based on even and odd occurrences.
+:nth-of-type(LevelNumber[n]) -- It will repeat the effect for every nth occurrence.
+:nth-of-type(2n) -- It will repeat the effect for every 2nd occurrence.
+:nth-of-type(2n+startNumber) -- It will start with specific level.
+:nth-last-of-type(n) -- It will apply effect for every nth occurrence from bottom.
+:nth-last-child(n) -- It will apply from bottom without repeating.
+:root -- It refers to root of document, which is 'body'.
+:empty -- If any element is empty, without any content then its will define the given effects.You can configure for containers like <div>
+, <span>
+,<td>
+, <dd>
+, <p>
+etc.
+Pseudo-Element Selectors:
+::first-line -- Effects for first line in paragraph.
+::first-letter -- Effects for first character.
+::before -- Effect or content to add before the current element.
+::after -- Effect or content to add after the current element.
+::placeholder -- It will apply effects for placeholder.
+::selection -- It will apply effects for selection.
+Language Selector:
+- It defines effects based on lang configured for element.
+- If you page is multi lingual then you can define effects to content based on specific
+language.
+":lang()"
+Universal Selector:
+- It is defined by using "*" that represents all.
+- It apply effects to all elements.
+CSS Comments:
+- Comments are used to explain the code, and may help when you edit the source code at a later date.
+- Comments are ignored by browsers.
+- A CSS comment is placed inside the
+<style>
+element, and starts with/* and ends with */
+. - You can add comments wherever you want in the code.
+CSS Colors:
+CSS Colors
+- Colors in CSS can be defined by using 3 techniques.
+- Color Name
+- Hexadecimal color code
+- RGB Color methods.
+- CSS supports 16 million colors.
+- Standard color names are few.
+- You can directly define the color name or color shade name.
+Syntax:
+h2{ color:green; } h2{ color:lightgreen; }
+Hexadecimal color code:
+- The primary colors are “Red, Green & Blue”.
+- All colors are derived from primary colors.
+- Hexadecimal allows to define multiple color shades.
+- Hexadecimal colors have a combination or 3 or 6 chars with prefix “#”
+- Hexadecimal number system is 16 base number system.
+- We use 16 different values to mix and create a color shade.
+- Hexadecimal color code uses the values 0,1,2,3,4,5,6,7,8,9,a,b,c,d,e,f
+- 0 is minimum and f is maximum.
+- Color code have 3 or 6 places other than #
+- If it is 3 then “#RGB” R - Red value G - Green value B - Blue value
+- Red, Green and Blue will have 1 place representation.
+Syntax:
+<style> input { background-color: #af0; } </style>
+- If it is 6 places then “#RRGGBB”.
+- Red, green and blue values will have 2 places.
+Syntax:
+<style> input { background-color: #dddddd; } </style>
+RGB color code:
+- The colors are defined with “Red, Green and Blue” combination.
+- The method “rgb()” is used for RGB colors.
+- It takes 3 values “rgb(redValue, greenValue, blueValue)”
+- The value range for red, green and blue will be between 0 to 255. Syntax: rgb(0,0,255) blue color rgb(255,0,0) Red color
+Ex:
+<style>
+input {
+background-color:rgb(205,123,215);
+}
+</style>
+RGBA (Red, Green, Blue, Alpha)
+- Alpha is for opaque 1.0 is full opaque
+- Range between 0.0 to 1.0
+<style> input { background-color:rgba(255, 0, 0, 0.3); } </style>
+CSS Units:
+- Units define size and position.
+- You can configure size with: height and width.
+- You can configure position with: x-axis, y-axis and z-axis.
+- The CSS units are categorized into 2 groups. -- Absolute Length Units -- Relative Length Units
+Absolute Length Units :-
+- They are not relative to anything else and are generally considered as normal units.
+- These are not affected by other relative elements and their units.
+Relative length units:
+Relative length units:
+- These are related to other contents in the page.
+- The size of any element can be determined based on its parent, child or adjacent.
+- The advantages are when parent element size is changed will relatively affects the child element also.
+em -- It uses the font size of parentelement and applies to current element.
+ex -- X- height of elements’ font [width]
+ch -- Defined for width, with regard to the root element.
+rem -- Font size to the root element size.
+ln -- Line height of the element.
+vw -- 1% of the viewport’s width.
+vh -- 1% of the viewport’s height.
+vmin -- 1% of the viewport’s smaller dimension.
+vmax --1% of the viewport’s larger dimension.
+Cascading Rules:
+- If a set of effects are re-defined for same element with same type of selector then according to CSS rule the last set of effects are applied to element.
+- If element have to choose between type selector and class selector then it will always choose the "class selector".
+- If element is configured with both ID and class selector then always ID selector related effects are applied to element.
+- If different style attributes are defined in ID, Class and Type selectors and applied to any specific element. Then then all styles are applied to element. Only same name style attributes are overridden.
+CSS 2D Transforms:
+- CSS 2D Transform feature allows the element to be transformed in 2-Dimensional space.
+- 2D is along X-Axis and Y-Axis.
+- CSS provides “transform” property to defined transformations.
+- CSS transforms are not supported on various browsers.
+- You have to use special plug-in for different browsers.
+Various transforms provided by CSS are:
+translate()-
+- It is used to move the element from its current position to a new position along x and y axis.
+Syntax:
+transform:translate(xPixels, yPixels); transform:translateX(pixels); transform:translateY(pixels);
+Note: Transformation happens in just one second, you can set timing for transformation by using "transition" attribute.
+scale():
+- It is used to increase or decrease the size of element along x and y axis.
+- You can control the height and width of element.
+Syntax:
+transform:scale(scaleX, scaleY); transform:scaleX() transform:scaleY()
+- Scale units are defined in fractions
+-- 1 = 100
+-- 1.5 = 150
+-- 2 = 200
+Syntax:
+transform:scale(2) // both x and y will be 200 transform:scale(2,1) // x will be 200 and y 100 transform:scaleX(2) // x will be 200 X = width Y = height
+Skew():
+- Skew is used to tilt the image by specified angle.
+Syntax:
+transform:skew(sx, sy) transform:skewX(angle) transform:skewY(angle)
+angle clockwise: 0 to 360
+angle counter clockwise: -360
+Rotate():
+- It rotates the element around its origin.
+- It uses value defined in deg.
+- It uses 0 to 360 deg angle
+- You can use -ve value for counter clockwise.
+Syntax:
+transform:rotate(‘angle’); transform:rotateX() transform:rotateY()
+Transform Matrix:
+-- Matrix allows to define all 2D transforms to single element.
+-- The transform methods
+-- translate(x,y)
+-- translateX()
+-- translateY()
+-- scale(x,y)
+-- scaleX()
+-- scaleY()
+-- rotate()
+-- rotateX()
+-- rotateY()
+-- skew()
+-- skewX()
+-- skewY()
+Syntax:
+matrix(scaleX(), skewY(), skewX(), scaleY(),
+translateX(), translateY())
+CSS 3D Transforms:
+- CSS 3D transforms allows 3-Dimensional design.
+- It will have configuration for X, Y and Z axis.
+- The methods used for 3D are same as 2D but comprises of 3rd Dimension.
+Translate3d():
+- It sets the position of element along x, y and z axis.
+Syntax:
+translate3d(tx, ty, tz)
+Scale3d:
+- It changes the image size in 3 dimensions.
+Syntax:
+scale3d(x, y, z)
+CSS Text Styling:
+Font Styling :-
+-It provides a set of attributes and values that are used to
+format the text.
+color -- Defines the foreground color.
+font-family -- It defines the font family name like: Arial
+font-size -- It defines the text size.
+font-weight -- Defines normal, bold, lighter, bolder.
+font-style -- Defines italic effect.
+text-transform -- Defines uppercase, lowercase, capitalize, full-width. [affects the font size]
+text-decoration -- Defines underline, overline, line- through.
+-It is short had for various text decoration options like style of line, color of line etc.
+-- text-decoration-color
+-- text-decoration-style
+-- text-decoration-line
+text-shadow -- It defines a shadow for text.
+text-align -- Left, center, right and justify
+line-height -- Space between lines.
+letter-spacing -- Space between letters.
+word-spacing -- Space between words.
+font-variant -- Caps, lowercase. [Without effecting the height of text it will change to caps]
+text-indent -- First line spacing.
+text-overflow -- Control the wrapping of text.
+white-space -- Control the blank space.
+direction -- Text direction
+text-orientation -- Changes the orientation of text.
+Ex: Font, Font Style, Color, Text Decoration
+<!DOCTYPE html>
+<html>
+<head>
+<title>Text Effects</title>
+<style>
+div{
+color:red;
+font-family: Arial;
+font-size: 4em;
+font-weight: bold;
+font-style: italic;
+text-transform: uppercase;
+text-decoration: underline;
+text-decoration-color: blue;
+text-decoration-style: wavy;
+}
+</style>
+</head>
+<body>
+<div>sample text</div>
+</body>
+</html>
+CSS Box Model:
+- Everything in CSS has a box around it.
+- Understanding boxes is important for designing layout.
+- It is often called as “Box Model”.
+- Box model comprises of Content Box -- The area where your content is displayed. It can be defined by using "height and width" attributes.
+Padding Box -- The padding is around the content as white space. Its size can be controlled by using "padding".
+Border Box -- The border box warps around the content or padding. It is controlled by using "border" property.
+Margin Box -- The margin is the outmost layer wrapping the content, padding and border. It configures a white space around border. It is defined by using “margin”.
+Set Margins, Padding and Border:
+Margin
+-- It specifies the space around border.
+-- You define by using following properties.
+-- margin [short hand – sets in all directions].
+-- margin-top.
+-- margin-bottom.
+-- margin-left.
+-- margin-right.
+Padding
+-- It specifies the space around content.
+-- You can define
+-- Padding-left.
+-- Padding-right.
+-- Padding-top.
+-- Padding-bottom.
+-- Padding. (All options are similar like margin)
+CSS Transition:
+- CSS transition is a module of CSS.
+- Transition is used for configuring animation for initial and final state.
+- Initial state is before transformation.
+- Final State is after transformation. -You can control the behaviour using various CSS effects
+-- timing
+-- duration
+-- other attributes
+- CSS Transition comprises of following properties
+-- transition
+-- transition-delay
+-- transition-duration
+-- transition-property
+-- transition-timing-function
+transition-delay : Delay is time taken to start animation.
+Syntax:
+transition-delay: 2s;
+transition-duration : Time take to complete the transformation.Specifies the duration from initial to final and vice versa.
+Syntax:
+transition-duration: 5s;
+transition-property : You can define several effects for transformation.
+-All effects are transformed from initial to final.
+-You can define only the effect that you want to transform by using transform-property.
+Syntax:
+transition-property: width,
+height;
+transition-property:all;transition-timing-function : CSS provides a set of pre-defined animations functions which you can apply to content.
+-These effects have pre-defined timings and behaviour.
+-The transition timing functions arelinear: speed will be even from begin to end.
+ease-in: starts slowly and increases towards end.
+ease-out: starts quickly and slow down.
+ease-in-out
+steps
+jump-start
+jump-end
+jump-none
+jump-both
+start
+end
+step-start
+step-end
+CSS Animations:
+-- CSS animations are used to animate CSS transitions.
+-- You can reduce the use of JavaScript and Flash for animation.
+-- Animation can easily run on low bandwidth devices like mobiles, tabs.
+-- Animation will work even when JavaScript is disabled or flash plugin is not available.
+-- To create CSS animation, we need
+-- @keyframes
+-- animation
+-- animation-name
+-- animation-duration
+-- animation-timing-function
+-- animation-delay
+-- animation-iteration-count
+-- animation-direction
+-- animation-fill-mode
+-- animation-play-state
+@Keyframes:
+- It is used to configure every frame in animation.
+- At each frame we can define effects for object.
+- Keyframes are defines with initial, final, and intermediate steps.
+Syntax:
+@keyframes identifierName
+{
+from { effects for initial state }
+to { effects for final state }
+}
+- Keyframes are applied to any element by using "animation-name" property
+Syntax:
+P { animation-name: keyframeIdentifierName; }
+- You can control the iteration count, the number of times to display by using "animation-iteration-count"
+- You can control animation direction by using "animation-direction"
+CSS Position:
+- Generally, elements are placed according to the document layout flow.
+- Position allows to make element behave differently and take them out of the document flow.
+- CSS Positions are defined by using “position” style attribute.
+Static Position:
+- It is according to the normal flow of document.
+- It is the default position for every element.
+- It will not have any effect on the element position.
+- Static position is not affected by top, right, bottom, left and z-index attributes.
+Ex:
+p { position: static; right: 10px; }
+Sticky Position:
+- Element is positioned according to the normal flow of document.
+- It can make the content sticky after scrolling to the specified margin.
+- It required the margins to define and position by using left, right, top or bottom.
+Fixed Position:
+- The element is removed from normal document flow.
+- Element is no longer a part of DOM flow.
+- Its position is fixed with left, right, top and bottom attributes.
+- It will not move from the position defined.
+- It locks the component at fixed position on page.
+Relative Position:
+- It according to the normal document flow.
+- Its position will be relative to adjacent or parent element.
+- It is from the parent or from adjacent.
+Position Absolute:
+- The element is removed from the normal document flow.
+- It is positioned relative to its closest element.
+- It is affected by using left, right, top and bottom values.
+As you apply these techniques, your CSS skills will continue to grow, opening doors to endless design possibilities.
+Thank you for taking the time to read this article. I hope it has helped you on your CSS journey!
+
+--------------------------------------------------------------------------------
+
+Title: How to Work with CSS Style Sheets – the Basics for Beginners
+Domain: www.freecodecamp.org
+URL: https://www.freecodecamp.org/news/css-style-sheets-basics/
+Content:
+Using HTML tags like , , and so on can help you organize your web page content nicely, but only up to a point.
+HTML-only pages can be pleasant and easy to read – which is hugely important – but, after a while, they all do tend to look the same.
+Cascading style sheets, known universally as CSS, aren't really sheets, and it can take some work to figure out what "cascading" means. But the markup standard adds real power to your web development work. Let's look at some of that CSS magic in action.
+This article comes from [my Complete LPI Web Development Essentials Study Guide course](https://www.udemy.com/course/complete-lpi-web-development-essentials-exam-study-guide/?referralCode=C92570BCBB38302A9257). If you'd like, you can follow the video version here:
+How CSS Works
+So what CSS actually does is allow you to separate your content from its presentation. HTML handles the content – meaning, the text, images, and other media your users will consume. And CSS adds more sophisticated control over the way that content looks and behaves.
+Beyond managing formatting, CSS also lets you modularize resources across complex websites, providing uniform presentation across multiple web pages. That's because a single CSS document can be referenced by as many web pages as you like.
+In fact I remember how, many years ago, in a particularly lazy moment, I once referenced some large, well-known website's CSS document from one of my own small sites. (Don't tell anyone, but it might have belonged to freeCodeCamp.)
+Because I couldn't be bothered to figure out how they produced an effect I liked, I just linked to their code. I'm pretty sure that was completely legal, by the way, but I definitely don't recommend you try it. It'll only be a matter of time before they make some changes to their style sheet that breaks your site.
+How to Add CSS to your HTML
+There are two ways to incorporate CSS code. First, you can simply save all your markup to a file using the .css
+extension that's accessible to your .html
+files using a link rel
+tag like this:
+<link rel="stylesheet" href="/main.css"
+That example uses the stylesheet
+attribute to point to a CSS file called main.css
+that's in the web root directory on its server.
+Alternatively, you can add it between <style>
+tags within the <head>
+section of your HTML. That'll look something like this:
+<!DOCTYPE html>
+<html>
+<head>
+<style type="text/css">
+p {
+color: red;
+text-align: center;
+}
+/* This is formatting for bullet points: */
+ul {
+color: blue;
+text-align: left;
+}
+</style>
+</head>
+Note how the opening tag has a type
+attribute of text/css
+, although I'm not sure how necessary that is any more. Keeping it there certainly can't hurt, though.
+This CSS has two sections: the first will apply to all p
+(paragraph) elements that might exist in your HTML.
+How to Apply Your CSS
+When you look at the above code, you'll see that there are two style definitions within the curly braces: the text color should be red, and the text alignment should be centered:
+<style type="text/css">
+p {
+color: red;
+text-align: center;
+}
+Notice how each definition ends with a semicolon. That's really important and leaving those out will break stuff. Also notice how we can refer to colors by name. We'll see more examples of that later, but be aware that you can also identify colors by their hexadecimal codes. The hexadecimal code for an attractive shade of red could be #F5733
+.
+The next line of our code is just a comment:
+/* This is formatting for bullet points: */
+In general, of course, you want this kind of note to make your code more readable and understandable. But I added it here specifically to show you how commenting works in CSS, using a forward slash and an asterisk at the start, and an asterisk and forward slash at the end. HTML-style comments won't work here.
+This next style will apply to any unordered list within your HTML, using blue as the text color and aligning text to the left.
+/* This is formatting for bullet points: */
+ul {
+color: blue;
+text-align: left;
+}
+</style>
+There's a lot more you can do here and, of course, you can apply styles to all kinds of HTML elements. But we've got to start somewhere, right?
+The actual HTML is further down in the <body>
+section. To show you how our CSS will work, I've written some text within a regular paragraph, and a couple of bullet points between <ul>
+tags.
+<body>
+<h2>Basic CSS</h2>
+<p>This text exists within a regular paragraph.</p>
+<ul>
+<li>This is a bullet point
+<li>This is another bullet point
+</ul>
+</body>
+</html>
+Now pop that code into a text file with a .html
+file extension and open it up in a browser. The colors and the alignment should reflect our preferences. It isn't much, but it is ours:
+![Image](https://www.freecodecamp.org/news/content/images/2023/06/fCC_product.png)
+Wrapping Up
+We've successfully incorporated CSS code within our HTML and precisely applied CSS styles to our content. Now take a couple of minutes to create something similar for yourself. Make sure you play around with all the values so you completely understand how they work.
+This article comes from [my Complete LPI Web Development Essentials Study Guide course](https://www.udemy.com/course/complete-lpi-web-development-essentials-exam-study-guide/?referralCode=C92570BCBB38302A9257). And there's much more technology goodness available at [bootstrap-it.com](https://bootstrap-it.com/)
+
+--------------------------------------------------------------------------------
+
